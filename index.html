@@ -1,0 +1,418 @@
+<!doctype html>
+<html>
+<head>
+    <!-- Project ChulaDirect: Chulalongkorn University Direct Entrance Score Calculator -->
+    <!-- Copyright (C) 2018  Siwat Techavoranant -->
+    <!-- github.com/keenthekeen/ChulaDirect -->
+    <meta charset="UTF-8"/>
+    <title>โปรแกรมคำนวณคะแนนรับตรงจุฬาฯ 2561</title>
+    <meta property="og:title" content="โปรแกรมคำนวณคะแนนรับตรงจุฬาฯ 2561"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="th_TH"/>
+    <meta property="og:image" content="https://chuladirect.keendev.net/screen.png"/>
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="โปรแกรมคำนวณคะแนนรับตรงจุฬาฯ 2561"/>
+    <meta name="twitter:image" content="https://chuladirect.keendev.net/screen.png"/>
+
+    <meta name="description" content="โปรแกรมคำนวณคะแนนสำหรับยื่นตรงเข้าจุฬาลงกรณ์มหาวิทยาลัย TCAS รอบ 3"/>
+    <meta name="keyword" content="คำนวณคะแนน รับตรง จุฬา TCAS รอบ 3 คณะแพทย์ วิศวะ รัฐศาสตร์ บัญชี นิเทศ อักษร จิตวิทยา เศรษฐศาสตร์ นิติศาสตร์ สหเวช วิทยาศาสตร์ 2561"/>
+    <meta name="google" content="notranslate"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#3f51b5"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" integrity="sha256-tKn8A2U9uuN5rPr3gh4A9FYMJkarrzLVyks7aS/ZfBU="
+          crossorigin="anonymous"/>
+    <style>
+        @font-face {
+            font-family: 'THSarabunNew';
+            src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot');
+            src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'), url('https://static.keendev.net/font/thsarabunnew-webfont.woff') format('woff'), url('https://static.keendev.net/font/thsarabunnew-webfont.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal
+        }
+
+        body {
+            font-family: 'THSarabunNew', Sans-Serif !important;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+            min-height: 300px;
+        }
+
+        .page-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-copyright a {
+            color: lightgrey;
+        }
+
+        .footer-copyright a:hover {
+            text-decoration: underline
+        }
+
+        .fullwidth {
+            width: 100%
+        }
+
+        main {
+            padding-top: 15px;
+            font-size: 18px
+        }
+
+        footer img {
+            height: 1.5rem;
+            position: relative;
+            top: 6px
+        }
+
+        .fullwidth {
+            width: 100%
+        }
+
+        .sector {
+            margin: 0.5rem 0 1rem 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+            background-color: #fff;
+            line-height: 1.8rem;
+            padding: 15px 25px 15px 15px;
+            width: 100%
+        }
+
+        body {
+            background-color: #3f51b5;
+            animation: fadein 2s;
+        }
+
+        @keyframes fadein {
+            from {
+                background-color: #333;
+            }
+            to {
+                background-color: #3f51b5;
+            }
+        }
+
+        h4 {
+            font-weight: 900;
+            text-shadow: 0.7px 0.7px #aaa;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background-color: transparent !important;
+        }
+
+        .grey-text a {
+            color: white;
+        }
+
+        .minibox {
+            font-size: 0.9rem;
+            margin: 2rem auto auto;
+            max-width: 550px;
+        }
+
+        #mainBox {
+            padding: 2.3rem 2.3rem 1rem 2.3rem; /* top-right-bottom-left */
+            border-radius: 2px;
+            max-width: 40rem;
+            margin: 1rem auto auto;
+            color: #333333;
+        }
+
+        #howText,
+        #previousText {
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+<main class="container">
+    <div class="white-text center-align" style="padding-top:5vh;padding-bottom:4vh;line-height:1.5rem;">
+        <h4>คำนวณคะแนนรับตรงจุฬาฯ</h4>
+        <h6>(TCAS 2561 รอบ 3)</h6>
+        <div class="z-depth-2 fullwidth grey lighten-5" id="mainBox">
+            <form>
+                <table>
+                    <tr>
+                        <th>การสอบ</th>
+                        <th>คะแนนที่ได้</th>
+                    </tr>
+                    <tr>
+                        <td>GAT</td>
+                        <td>
+                            <input class="validate" name="continue_score[gat]" id="igat" min="0" max="300" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PAT1 (คณิต)</td>
+                        <td>
+                            <input class="validate" name="continue_score[pat1]" id="ipat1" min="0" max="300" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PAT2 (วิทย์)</td>
+                        <td>
+                            <input class="validate" name="continue_score[pat2]" id="ipat2" min="0" max="300" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PAT3 (วิศวกรรม)</td>
+                        <td>
+                            <input class="validate" name="continue_score[pat3]" id="ipat3" min="0" max="300" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <!--tr>
+                    <td>PAT4 (สถาปัตยกรรม)</td>
+                    <td>
+                        <input class="validate" name="continue_score[pat4]" id="ipat4" min="0" max="300" step="0.01" type="number" />
+                    </td>
+                </tr-->
+                    <tr>
+                        <td>PAT5 (ครู)</td>
+                        <td>
+                            <input class="validate" name="continue_score[pat5]" id="ipat5" min="0" max="300" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <!--tr>
+                    <td>PAT6 (ศิลปกรรม)</td>
+                    <td>
+                        <input class="validate" name="continue_score[pat6]" id="ipat6" min="0" max="300" step="0.01" type="number" />
+                    </td>
+                </tr-->
+                    <tr>
+                        <td>PAT7 (ภาษาต่างประเทศที่ 2)</td>
+                        <td>
+                            <input class="validate" name="continue_score[pat7]" id="ipat7" min="0" max="300" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>วิชาสามัญ ภาษาไทย</td>
+                        <td>
+                            <input class="validate" name="continue_score[btha]" id="ibtha" min="0" max="100" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>วิชาสามัญ สังคมศึกษา</td>
+                        <td>
+                            <input class="validate" name="continue_score[bsoc]" id="ibsoc" min="0" max="100" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>วิชาสามัญ ภาษาอังกฤษ</td>
+                        <td>
+                            <input class="validate" name="continue_score[beng]" id="ibeng" min="0" max="100" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>วิชาสามัญ คณิตศาสตร์ 1</td>
+                        <td>
+                            <input class="validate" name="continue_score[bmat]" id="ibmat" min="0" max="100" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>วิชาสามัญ ฟิสิกส์</td>
+                        <td>
+                            <input class="validate" name="continue_score[bphy]" id="ibphy" min="0" max="100" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>วิชาสามัญ เคมี</td>
+                        <td>
+                            <input class="validate" name="continue_score[bchm]" id="ibchm" min="0" max="100" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>วิชาสามัญ ชีววิทยา</td>
+                        <td>
+                            <input class="validate" name="continue_score[bbio]" id="ibbio" min="0" max="100" step="0.01" type="number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ความถนัดแพทย์ (เต็ม 30)</td>
+                        <td>
+                            <input class="validate" name="continue_score[med]" id="imed" min="0" max="30" step="0.0001" type="number"/>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <br/>
+                <div class="divider"></div>
+                <br/>
+                <br/>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select disabled>
+                            <option value="" disabled selected>จุฬาลงกรณ์มหาวิทยาลัย</option>
+                        </select>
+                        <label>มหาวิทยาลัย</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="iFaculty">
+                            <option value="" disabled selected>กำลังโหลด</option>
+                        </select>
+                        <label>คณะ</label>
+                    </div>
+                </div>
+                <button type="submit" class="waves-effect waves-light btn-large orange fullwidth" id="calculateBtn">
+                    คำนวณ
+                </button>
+                <div class="sector yellow lighten-2" style="display:none;margin-top:1rem" id="scoreBox">
+                    <span id="howText"></span>
+                    ได้คะแนนรวม
+                    <b id="score"></b> คะแนน
+                    <br/>
+                    <span id="previousText"></span>
+                </div>
+            </form>
+            <br/>
+            <br/>
+            <div class="divider"></div>
+            <br/> อ่านเพิ่มเติม:
+            <ul class="browser-default">
+                <li>
+                    <a href="http://www.admissions.chula.ac.th/images/stories/r3.4_19_01_61.pdf" target="_blank">องค์ประกอบคะแนน แนบประกาศของจุฬาฯ 61</a>
+                </li>
+                <li>
+                    <a href="http://www.atc.chula.ac.th/admission2/pdf2017/Score_DirectAdmissions60.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2560</a>
+                </li>
+                <li>
+                    <a href="http://www.atc.chula.ac.th/admission2/Score59.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2559</a>
+                </li>
+                <li>
+                    <a href="http://www.atc.chula.ac.th/admission2/Score58.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2558</a>
+                </li>
+                <li>
+                    <a href="https://www.opendurian.com/news/chula_normal/" target="_blank">สรุปเป้าคะแนนรับตรง จุฬาฯ 60 ทุกคณะ จากเว็บ OpenDurian</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="center-align minibox sector red darken-1 white-text" id="mini-al" style="display:none;font-size:1.3rem;line-height: 2rem;">
+            <h4>ระบบไม่สามารถทำงานได้</h4>
+            คุณกำลังใช้งานบนอุปกรณ์ที่ไม่เหมาะสม
+            <br/> ใช้งานได้ดีที่สุดบน
+            <a href="https://firefox.com">Mozilla Firefox</a> หรือ Google Chrome หรือ Safari รุ่นล่าสุด
+        </div>
+    </div>
+</main>
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            ข้อมูลที่กรอกอาจเก็บไว้ในเครื่องเพื่อดูครั้งต่อไป แต่จะไม่ถูกส่งไปยังเซิร์ฟเวอร์แต่อย่างใด | <a href="https://github.com/keenthekeen/ChulaDirect"><img src="github.png"/></a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" integrity="sha256-W9FML0cw6SfScX3k0Z8iTWhaZGSEUrR3R3KWfRA6lnI="
+        crossorigin="anonymous"></script>
+<script>
+    var list;
+    $(function () {
+        fetch('chula.json').then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            list = data;
+
+            var options = '';
+            for (var i in list) {
+                var optionName;
+                if ('acceptance' in list[i]) {
+                    optionName = list[i].name + ' (รับ ' + list[i].acceptance + ' คน)';
+                } else {
+                    optionName = list[i].name;
+                }
+                options += '<option value="' + i + '">' + optionName + '</option>';
+            }
+            $("#iFaculty").html(options).change();
+            $('select').formSelect();
+        });
+        $("form").submit(function (e) {
+            e.preventDefault();
+            var faculty = list[$("#iFaculty").val()]["calculate"];
+            var score = 0;
+            var howText = [];
+            var previousText = [];
+            var useB = false;
+            var bList = ['beng', 'bsoc', 'bchm', 'btha', 'bbio', 'bphy', 'bmat'];
+            $("#howText").css("color", "#444444");
+            for (var i in faculty) {
+                score += $("#i" + i).val() * faculty[i];
+                if ($("#i" + i).val() <= 0) {
+                    alert("ไม่มีคะแนน " + i.toUpperCase());
+                    $("#howText").css("color", "red");
+                }
+                howText.push(i.toUpperCase() + " x " + faculty[i]);
+                localStorage.setItem(i, $("#i" + i).val());
+                if (bList.indexOf(i) != -1) {
+                    useB = true;
+                }
+            }
+            var previous = list[$("#iFaculty").val()]["previous"];
+            for (var i in previous) {
+                previousText.push("คะแนนต่ำสุดปี " + i + ": " + previous[i].toLocaleString('en-US'));
+            }
+            $("#score").text(score.toLocaleString('en-US'));
+            if (useB) {
+                $("#howText").hide();
+            } else {
+                $("#howText").html("คำนวณจาก " + howText.join(" + ") + "<br />").show();
+            }
+            $("#previousText").html(previousText.join("<br />"));
+            $("#scoreBox").slideDown();
+            gtag('event', 'calculate', {
+                'faculty': $("#iFaculty").val()
+            });
+        });
+
+        var fields = ['gat', 'pat1', 'pat2', 'pat3', 'pat5', 'pat7', 'beng', 'bsoc', 'bchm', 'btha', 'bbio', 'bphy', 'bmat', 'med'];
+        if (localStorage.getItem('gat') || localStorage.getItem('btha')) {
+            fields.forEach(function (e) {
+                $("#i" + e).val(localStorage.getItem(e));
+            });
+        }
+    });
+
+
+    if (!self.fetch) {
+        // Check for old browser by checking Fetch API support, which is not present in old browsers.
+        // Visit http://caniuse.com for more information
+        $('#mini-al').show();
+
+        if (!(typeof Promise !== "undefined" && Promise.toString().indexOf("[native code]") !== -1)) {
+            // If Promise API not supported
+            setTimeout(function () {
+                $('body').css('background-color', '#f44336');
+            }, 2000);
+            $('.btn-large').removeClass('orange').addClass('grey');
+        }
+    }
+
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-40738950-5"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-40738950-5');
+</script>
+</body>
+</html>
