@@ -122,7 +122,7 @@
         #mainBox {
             padding: 2.3rem 2.3rem 1rem 2.3rem; /* top-right-bottom-left */
             border-radius: 2px;
-            max-width: 40rem;
+            max-width: 45rem;
             margin: 1rem auto auto;
             color: #333333;
         }
@@ -279,6 +279,7 @@
                     <b id="score"></b> คะแนน
                     <br/>
                     <span id="previousText"></span><br />
+                    <div id="chart_div"></div>
                     <span style="font-size:0.7rem">โปรดตรวจสอบเกณฑ์ขั้นต่ำและเงื่อนไขของแต่ละคณะ</span>
                 </div>
             </form>
@@ -300,7 +301,10 @@
                     <a href="http://www.atc.chula.ac.th/admission2/Score58.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2558</a>
                 </li>
                 <li>
-                    <a href="https://www.opendurian.com/news/chula_normal/" target="_blank">สรุปเป้าคะแนนรับตรง จุฬาฯ 60 ทุกคณะ จากเว็บ OpenDurian</a>
+                    <a href="https://admission2.atc.chula.ac.th/" target="_blank">การคัดเลือกบุคคลเข้าศึกษาระดับปริญญาตรี TCAS 2561 (ศูนย์ทดสอบทางวิชาการแห่งจุฬาลงกรณ์มหาวิทยาลัย)</a>
+                </li>
+                <li>
+                    <a href="https://www.opendurian.com/news/chula_normal/" target="_blank" rel="nofollow">สรุปเป้าคะแนนรับตรง จุฬาฯ 60 ทุกคณะ จากเว็บ OpenDurian</a>
                 </li>
             </ul>
         </div>
@@ -319,6 +323,10 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" integrity="sha256-W9FML0cw6SfScX3k0Z8iTWhaZGSEUrR3R3KWfRA6lnI="
         crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+</script>
 <script>
     var list;
     $(function () {
@@ -365,7 +373,19 @@
             }
             var previous = list[$("#iFaculty").val()]["previous"];
             for (var i in previous) {
-                previousText.push("คะแนนต่ำสุดปี " + i + ": " + previous[i].toLocaleString('en-US'));
+                var diff = (score - previous[i]);
+                if (Math.abs(diff) < 50) {
+                    diff = diff.toFixed(3);
+                } else {
+                    diff = diff.toFixed(1);
+                }
+                var pt = "คะแนนต่ำสุดปี " + i + ": " + previous[i].toLocaleString('en-US');
+                if (diff >= 0) {
+                    pt += " (<span class='green-text'>+"+diff+"</span>)";
+                } else {
+                    pt += " (<span class='red-text'>"+diff+"</span>)";
+                }
+                previousText.push(pt);
             }
             $("#score").text(score.toLocaleString('en-US'));
             if (useB) {
@@ -378,6 +398,38 @@
             gtag('event', 'calculate', {
                 'faculty': $("#iFaculty").val()
             });
+
+            if (Object.keys(previous).length === 3) {
+                // Draw graph
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'ปี');
+                data.addColumn('number', 'ที่ได้');
+                data.addColumn('number', 'ขั้นต่ำ');
+                var options = {
+                    hAxis: {
+                        title: 'ปี'
+                    },
+                    vAxis: {
+                        title: 'คะแนน'
+                    },
+                    animation: {
+                        startup: true,
+                        duration: 800,
+                        easing: 'inAndOut'
+                    }
+                };
+
+                data.addRows([
+                    ['2558', score, previous['2558']], ['2559', score, previous['2559']], ['2560', score, previous['2560']]
+                ]);
+
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                $("#chart_div").show();
+                chart.draw(data, options);
+            } else {
+                $("#chart_div").hide();
+            }
+
             if ((new Date()).getTime() - timeLoaded > 1800000) {
                 // If page has been loaded more than 30 minutes ago, reload.
                 setTimeout(function () {
