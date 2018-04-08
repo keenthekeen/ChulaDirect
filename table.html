@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+    <!-- Project ChulaDirect: Chulalongkorn University Direct Entrance Score Calculator -->
+    <!-- Copyright (C) 2018  Siwat Techavoranant -->
+    <!-- github.com/keenthekeen/ChulaDirect -->
+    <meta charset="UTF-8"/>
+    <title>ดูภาพรวม รับตรงจุฬา 2561</title>
+    <meta name="google" content="notranslate"/>
+    <meta name="robots" content="noindex, nofollow"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#3f51b5"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" integrity="sha256-tKn8A2U9uuN5rPr3gh4A9FYMJkarrzLVyks7aS/ZfBU="
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="app.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="indigo" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="/" class="brand-logo th">
+            คำนวณคะแนนรับตรงจุฬาฯ 2561
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li class="active"><a href="index.html">หน้าแรก</a></li>
+        </ul>
+    </div>
+</nav>
+<main class="container">
+    <a href="index.html" class="blue-text" style="margin-top:2rem"><i class="small material-icons">arrow_back</i> กลับ</a>
+    <h5 class="center-align" style="font-weight: bold">ดูคณะทั้งหมด</h5>
+    <table id="compareTable">
+        <tr><td>กำลังโหลด...</td></tr>
+    </table>
+    <p class="grey-text" style="font-size:0.85rem">หมายเหตุ:&ensp;ไม่แสดงคณะที่มีคะแนนสอบไม่ครบ, N/A หมายถึง ไม่มีข้อมูล, โปรดศึกษาเกณฑ์ขั้นต่ำและเงื่อนไขของแต่ละคณะด้วยตนเอง</p>
+</main>
+
+<footer class="page-footer indigo">
+    <div class="footer-copyright">
+        <div class="container">
+            <a href="index.html">กลับไปยังหน้าแรก</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" integrity="sha256-W9FML0cw6SfScX3k0Z8iTWhaZGSEUrR3R3KWfRA6lnI="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    var list;
+    $(function () {
+        if (localStorage.getItem('gat') || localStorage.getItem('bsoc')) {
+            fetch('chula.json').then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                list = data;
+
+                var tableCode = '<tr><th>คณะ</th><th>คะแนนที่ได้</th><th>ต่ำสุดปี 60</th><th>ต่ำสุดปี 59</th><th>ต่ำสุดปี 58</th><th>จำนวนรับ (คน)</th></tr>';
+
+                // Loop through faculties
+                for (var i in list) {
+
+                    // Calculate Score
+                    var facultyCal = list[i]["calculate"];
+                    var score = 0;
+                    var scoreNotFound = false;
+
+                    // Loop through each test
+                    for (var m in facultyCal) {
+                        if (localStorage.getItem(m)) {
+                            score += localStorage.getItem(m) * facultyCal[m];
+                            if (localStorage.getItem(m) <= 0) {
+                                scoreNotFound = true;
+                            }
+                        } else {
+                            scoreNotFound = true;
+                        }
+                    }
+
+                    if (!scoreNotFound) {
+                        tableCode += '<tr><td>' + list[i].name + '</td><td>'+score.toLocaleString('en-US')+'</td>';
+
+                        var fPrevious = list[i]["previous"];
+                        if (fPrevious === undefined) {
+                            tableCode += '<td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td>';
+                        } else {
+                            var year = 2560;
+                            while (year >= 2558) {
+                                if (fPrevious[year.toString()] === undefined) {
+                                    tableCode += '<td>-</td>';
+                                } else {
+                                    tableCode += '<td>'+fPrevious[year.toString()].toLocaleString('en-US');
+                                    var diff = (score - fPrevious[year.toString()]).toFixed(2);
+                                    if (diff >= 0) {
+                                        tableCode += "<br />(<span class='green-text'>+" + diff + "</span>)</td>";
+                                    } else {
+                                        tableCode += "<br />(<span class='red-text'>" + diff + "</span>)</td>";
+                                    }
+                                }
+                                year--;
+                            }
+                        }
+
+                        tableCode += '<td>'+((list[i].acceptance === undefined) ? '<span class="grey-text">N/A</span>' : list[i].acceptance)+'</td></tr>';
+                    }
+                }
+                $("#compareTable").html(tableCode);
+            });
+        } else {
+            document.write('ไม่มีข้อมูลคะแนนสอบ <a href="index.html">กลับหน้าแรก</a>');
+        }
+    });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-40738950-5"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-40738950-5');
+</script>
+</body>
+</html>

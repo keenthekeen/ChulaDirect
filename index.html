@@ -23,68 +23,8 @@
     <meta name="theme-color" content="#3f51b5"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" integrity="sha256-tKn8A2U9uuN5rPr3gh4A9FYMJkarrzLVyks7aS/ZfBU="
           crossorigin="anonymous"/>
+    <link href="app.css" rel="stylesheet"/>
     <style>
-        @font-face {
-            font-family: 'THSarabunNew';
-            src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot');
-            src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'), url('https://static.keendev.net/font/thsarabunnew-webfont.woff') format('woff'), url('https://static.keendev.net/font/thsarabunnew-webfont.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal
-        }
-
-        body {
-            font-family: 'THSarabunNew', Sans-Serif !important;
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1 0 auto;
-            min-height: 300px;
-        }
-
-        .page-footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-copyright a {
-            color: lightgrey;
-        }
-
-        .footer-copyright a:hover {
-            text-decoration: underline
-        }
-
-        .fullwidth {
-            width: 100%
-        }
-
-        main {
-            padding-top: 15px;
-            font-size: 18px
-        }
-
-        footer img {
-            height: 1.5rem;
-            position: relative;
-            top: 6px
-        }
-
-        .fullwidth {
-            width: 100%
-        }
-
-        .sector {
-            margin: 0.5rem 0 1rem 0;
-            border: 1px solid #e0e0e0;
-            border-radius: 3px;
-            background-color: #fff;
-            line-height: 1.8rem;
-            padding: 15px 25px 15px 15px;
-            width: 100%
-        }
-
         body {
             background-color: #3f51b5;
             animation: fadein 2s;
@@ -99,42 +39,12 @@
             }
         }
 
-        h4 {
-            font-weight: 900;
-            text-shadow: 0.7px 0.7px #aaa;
-            margin-bottom: 2rem;
-        }
-
         footer {
             background-color: transparent !important;
         }
 
-        .grey-text a {
-            color: white;
-        }
-
-        .minibox {
-            font-size: 0.9rem;
-            margin: 2rem auto auto;
-            max-width: 550px;
-        }
-
         #mainBox {
-            padding: 2.3rem 2.3rem 1rem 2.3rem; /* top-right-bottom-left */
-            border-radius: 2px;
             max-width: 45rem;
-            margin: 1rem auto auto;
-            color: #333333;
-        }
-
-        #howText,
-        #previousText {
-            font-size: 0.9em;
-        }
-
-        ul .btn {
-            margin-bottom: 0.8rem;
-            width: 100%
         }
     </style>
 </head>
@@ -279,13 +189,13 @@
                     คำนวณ
                 </button>
                 <div class="sector yellow lighten-2" style="display:none;margin-top:1rem" id="scoreBox">
-                    <span>ยื่น <span id="titleText"></span> จุฬาลงกรณ์มหาวิทยาลัย</span><br />
+                    <span>ยื่น <span id="titleText"></span> จุฬาลงกรณ์มหาวิทยาลัย</span><br/>
                     <span id="howText"></span>
                     ได้คะแนนรวม
                     <b id="score"></b> คะแนน<br/>
                     <span id="previousText"></span>
                     <div id="chart_div"></div>
-                    <span style="font-size:0.7rem">โปรดตรวจสอบเกณฑ์ขั้นต่ำและเงื่อนไขของแต่ละคณะ</span>
+                    <p style="font-size:0.7rem;margin:0">โปรดศึกษาเกณฑ์ขั้นต่ำและเงื่อนไขของแต่ละคณะด้วยตนเอง</p>
                 </div>
             </form>
             <br/>
@@ -297,7 +207,10 @@
                     <a class="waves-effect waves-light btn modal-trigger" href="cotmes.html">คะแนนต่ำสุดกสพท. 2557 - 2560</a>
                 </li>
                 <li>
-                    <a href="http://www.admissions.chula.ac.th/images/stories/r3.4_19_01_61.pdf" target="_blank">องค์ประกอบคะแนน แนบประกาศของจุฬาฯ 61</a>
+                    <a class="waves-effect waves-light btn modal-trigger purple" onclick="viewAll()">ดูแบบหลายคณะพร้อมกัน</a>
+                </li>
+                <li>
+                    <a href="http://www.admissions.chula.ac.th/images/stories/r3.4_19_01_61.pdf" target="_blank">องค์ประกอบคะแนน แนบประกาศของจุฬาฯ 2561</a>
                 </li>
                 <li>
                     <a href="http://www.atc.chula.ac.th/admission2/pdf2017/Score_DirectAdmissions60.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2560</a>
@@ -310,9 +223,6 @@
                 </li>
                 <li>
                     <a href="https://admission2.atc.chula.ac.th/" target="_blank">การคัดเลือกบุคคลเข้าศึกษาระดับปริญญาตรี TCAS 2561 (ศูนย์ทดสอบทางวิชาการแห่งจุฬาลงกรณ์มหาวิทยาลัย)</a>
-                </li>
-                <li>
-                    <a href="https://www.opendurian.com/news/chula_normal/" target="_blank" rel="nofollow">สรุปเป้าคะแนนรับตรง จุฬาฯ 60 ทุกคณะ จากเว็บ OpenDurian</a>
                 </li>
             </ul>
         </div>
@@ -337,6 +247,7 @@
 </script>
 <script>
     var list;
+    var fields = ['gat', 'pat1', 'pat2', 'pat3', 'pat5', 'pat7', 'beng', 'bsoc', 'bchm', 'btha', 'bbio', 'bphy', 'bmat', 'med'];
     $(function () {
         var timeLoaded = (new Date()).getTime();
         fetch('chula.json').then(function (response) {
@@ -372,9 +283,12 @@
             for (var i in faculty) {
                 score += $("#i" + i).val() * faculty[i];
                 if ($("#i" + i).val() <= 0) {
-                    alert("ไม่มีคะแนน " + i.toUpperCase());
+                    //alert();
+                    M.toast({html: "ไม่มีคะแนน " + i.toUpperCase()});
                     $("#howText").css("color", "red");
                     scoreNotFound = true;
+                    $("#scoreBox").slideUp();
+                    return;
                 }
                 howText.push(i.toUpperCase() + " x " + faculty[i]);
                 localStorage.setItem(i, $("#i" + i).val());
@@ -461,13 +375,23 @@
             }
         });
 
-        var fields = ['gat', 'pat1', 'pat2', 'pat3', 'pat5', 'pat7', 'beng', 'bsoc', 'bchm', 'btha', 'bbio', 'bphy', 'bmat', 'med'];
         if (localStorage.getItem('gat') || localStorage.getItem('btha')) {
             fields.forEach(function (e) {
                 $("#i" + e).val(localStorage.getItem(e));
             });
         }
     });
+
+    function viewAll() {
+        fields.forEach(function (e) {
+            localStorage.setItem(e, $("#i" + e).val());
+        });
+        if (confirm('ได้กรอกคะแนนสอบทุกวิชาที่สอบแล้วใช่หรือไม่')) {
+            window.location.href = "table.html";
+        } else {
+            M.toast({html: 'โปรดกรอกคะแนนสอบให้ครบถ้วนเท่าที่มี'});
+        }
+    }
 
 
     if (!self.fetch) {

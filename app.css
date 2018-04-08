@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot');
+    src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'), url('https://static.keendev.net/font/thsarabunnew-webfont.woff') format('woff'), url('https://static.keendev.net/font/thsarabunnew-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal
+}
+
+body {
+    font-family: 'THSarabunNew', Sans-Serif !important;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+    min-height: 300px;
+}
+
+.page-footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-copyright a {
+    color: lightgrey;
+}
+
+.footer-copyright a:hover {
+    text-decoration: underline
+}
+
+.fullwidth {
+    width: 100%
+}
+
+main {
+    padding-top: 15px;
+    font-size: 18px
+}
+
+footer img {
+    height: 1.5rem;
+    position: relative;
+    top: 6px
+}
+
+.fullwidth {
+    width: 100%
+}
+
+.sector {
+    margin: 0.5rem 0 1rem 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    background-color: #fff;
+    line-height: 1.8rem;
+    padding: 15px 25px 15px 15px;
+    width: 100%
+}
+
+h4 {
+    font-weight: 900;
+    text-shadow: 0.7px 0.7px #aaa;
+    margin-bottom: 2rem;
+}
+
+.grey-text a {
+    color: white;
+}
+
+.minibox {
+    font-size: 0.9rem;
+    margin: 2rem auto auto;
+    max-width: 550px;
+}
+
+#mainBox {
+    padding: 2.3rem 2.3rem 1rem 2.3rem; /* top-right-bottom-left */
+    border-radius: 2px;
+    margin: 1rem auto auto;
+    color: #333333;
+}
+
+#howText,
+#previousText {
+    font-size: 0.9em;
+}
+
+ul .btn {
+    margin-bottom: 0.8rem;
+    width: 100%
+}
+
+#logo-container {
+    font-size: 1.5rem;
+}

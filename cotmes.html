@@ -9,11 +9,11 @@
     <meta property="og:title" content="คะแนนกสพท. 2557 - 2560"/>
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="th_TH"/>
-    <meta property="og:image" content="https://chuladirect.keendev.net/screen.png"/>
+    <meta property="og:image" content="https://chuladirect.keendev.net/screen-cotmes.png"/>
 
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content="คะแนนกสพท. 2557 - 2560"/>
-    <meta name="twitter:image" content="https://chuladirect.keendev.net/screen.png"/>
+    <meta name="twitter:image" content="https://chuladirect.keendev.net/screen-cotmes.png"/>
 
     <meta name="google" content="notranslate"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -21,68 +21,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" integrity="sha256-tKn8A2U9uuN5rPr3gh4A9FYMJkarrzLVyks7aS/ZfBU="
           crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="app.css" rel="stylesheet"/>
     <style>
-        @font-face {
-            font-family: 'THSarabunNew';
-            src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot');
-            src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'), url('https://static.keendev.net/font/thsarabunnew-webfont.woff') format('woff'), url('https://static.keendev.net/font/thsarabunnew-webfont.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal
-        }
-
-        body {
-            font-family: 'THSarabunNew', Sans-Serif !important;
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1 0 auto;
-            min-height: 300px;
-        }
-
-        .page-footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-copyright a {
-            color: lightgrey;
-        }
-
-        .footer-copyright a:hover {
-            text-decoration: underline
-        }
-
-        .fullwidth {
-            width: 100%
-        }
-
-        main {
-            padding-top: 15px;
-            font-size: 18px
-        }
-
-        footer img {
-            height: 1.5rem;
-            position: relative;
-            top: 6px
-        }
-
-        .fullwidth {
-            width: 100%
-        }
-
-        .sector {
-            margin: 0.5rem 0 1rem 0;
-            border: 1px solid #e0e0e0;
-            border-radius: 3px;
-            background-color: #fff;
-            line-height: 1.8rem;
-            padding: 15px 25px 15px 15px;
-            width: 100%
-        }
-
         body {
             background-color: #3f51b5;
             animation: fadein 2s;
@@ -97,39 +37,20 @@
             }
         }
 
-        h4 {
-            font-weight: 900;
-            text-shadow: 0.7px 0.7px #aaa;
-            margin-bottom: 2rem;
-        }
-
         footer {
             background-color: transparent !important;
         }
 
-        .grey-text a {
-            color: white;
-        }
-
-        .minibox {
-            font-size: 0.9rem;
-            margin: 2rem auto auto;
-            max-width: 550px;
-        }
-
         #mainBox {
-            padding: 2.3rem 2.3rem 1rem 2.3rem; /* top-right-bottom-left */
-            border-radius: 2px;
             max-width: 60rem;
-            margin: 1rem auto auto;
-            color: #333333;
+            min-width: 600px;
         }
     </style>
 </head>
 
 <body>
 <main class="container">
-    <a href="index.html" class="white-text text-lighten-4" style="margin-top:2rem"><i class="small material-icons">arrow_back</i> กลับ</a>
+    <a href="index.html" class="white-text" style="margin-top:2rem"><i class="small material-icons">arrow_back</i> กลับ</a>
     <div class="white-text center-align" style="padding-bottom:4vh;line-height:1.5rem;">
         <h4>เปรียบเทียบคะแนนกสพท.</h4>
         <h6>ปี 2557 - 2560</h6>
@@ -145,7 +66,7 @@
                     <tr style="border-bottom: none">
                         <td>คะแนนรวมกสพท.</td>
                         <td>
-                            <input class="validate" name="cotmes" id="iCotmes" min="0" max="100" step="0.0001" type="number"/>
+                            <input class="validate" name="cotmes" id="iCotmes" min="0" max="100" type="number"/>
                         </td>
                     </tr>
                 </table>
@@ -225,7 +146,7 @@
             ['2557', 70.9839, 69.4161, 67.9394, 65.6017, 66.3517, 65.3017, 63.6011, 63.775, 62.9606, score],
             ['2558', 70.6258, 69.2878, 68.0145, 65.2906, 65.1331, 64.6533, 63.5123, 63.4257, 62.489, score],
             ['2559', 69.3922, 67.375, 65.9556, 64.2825, 63.8756, 63.3253, 62.45, 61.4835, 60.8572, score],
-            ['2560', 74.1567, 69.8022, 70.1089, 67.6822, 67.1346, 67.1346, 65.955, 64.6472, 63.1105, score]
+            ['2560', 74.1567, 69.8022, 70.1089, 67.6822, 67.1346, 66.6727, 65.955, 64.6472, 63.1105, score]
         ];
         var data = google.visualization.arrayToDataTable(dataArray);
 
@@ -251,10 +172,31 @@
         });
         console.log(tableArray);
         var tableCode = '';
+        var eNo = 0;
         tableArray.forEach(function (elem) {
-            tableCode += '<tr><th>'+elem[0]+'</th><td>'+elem[1]+'</td><td>'+elem[2]+'</td><td>'+elem[3]+'</td><td>'+elem[4]+'</td></tr>';
+            if (eNo === 0) {
+                tableCode += '<tr><th>' + elem[0] + '</th><th>' + elem[1] + '</th><th>' + elem[2] + '</th><th>' + elem[3] + '</th><th>' + elem[4] + '</th></tr>';
+            } else if (eNo <= 9) {
+                tableCode += '<tr><th>' + elem[0] + '</th>';
+                var loopNo = 1;
+                while (loopNo <= 4) {
+                    tableCode += '<td>' + elem[loopNo];
+
+                    var diff = (score - elem[loopNo]).toFixed(2);
+                    if (diff >= 0) {
+                        tableCode += " (<span class='green-text'>+" + diff + "</span>)";
+                    } else {
+                        tableCode += " (<span class='red-text'>" + diff + "</span>)";
+                    }
+
+                    tableCode += '</td>';
+                    loopNo++;
+                }
+                tableCode += '</tr>';
+            }
+            eNo++;
         });
-        $("#compareTable").html(tableCode.join());
+        $("#compareTable").html(tableCode);
     }
 
     google.charts.setOnLoadCallback(showGraph);
