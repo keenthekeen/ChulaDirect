@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+<head>
+    <!-- Project ChulaDirect: Chulalongkorn University Direct Entrance Score Calculator -->
+    <!-- Copyright (C) 2018  Siwat Techavoranant -->
+    <!-- github.com/keenthekeen/ChulaDirect -->
+    <meta charset="UTF-8"/>
+    <title>คะแนนกสพท. 2557 - 2560</title>
+    <meta property="og:title" content="คะแนนกสพท. 2557 - 2560"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="th_TH"/>
+    <meta property="og:image" content="https://chuladirect.keendev.net/screen.png"/>
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="คะแนนกสพท. 2557 - 2560"/>
+    <meta name="twitter:image" content="https://chuladirect.keendev.net/screen.png"/>
+
+    <meta name="google" content="notranslate"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#3f51b5"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" integrity="sha256-tKn8A2U9uuN5rPr3gh4A9FYMJkarrzLVyks7aS/ZfBU="
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <style>
+        @font-face {
+            font-family: 'THSarabunNew';
+            src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot');
+            src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'), url('https://static.keendev.net/font/thsarabunnew-webfont.woff') format('woff'), url('https://static.keendev.net/font/thsarabunnew-webfont.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal
+        }
+
+        body {
+            font-family: 'THSarabunNew', Sans-Serif !important;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+            min-height: 300px;
+        }
+
+        .page-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-copyright a {
+            color: lightgrey;
+        }
+
+        .footer-copyright a:hover {
+            text-decoration: underline
+        }
+
+        .fullwidth {
+            width: 100%
+        }
+
+        main {
+            padding-top: 15px;
+            font-size: 18px
+        }
+
+        footer img {
+            height: 1.5rem;
+            position: relative;
+            top: 6px
+        }
+
+        .fullwidth {
+            width: 100%
+        }
+
+        .sector {
+            margin: 0.5rem 0 1rem 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+            background-color: #fff;
+            line-height: 1.8rem;
+            padding: 15px 25px 15px 15px;
+            width: 100%
+        }
+
+        body {
+            background-color: #3f51b5;
+            animation: fadein 2s;
+        }
+
+        @keyframes fadein {
+            from {
+                background-color: #333;
+            }
+            to {
+                background-color: #3f51b5;
+            }
+        }
+
+        h4 {
+            font-weight: 900;
+            text-shadow: 0.7px 0.7px #aaa;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background-color: transparent !important;
+        }
+
+        .grey-text a {
+            color: white;
+        }
+
+        .minibox {
+            font-size: 0.9rem;
+            margin: 2rem auto auto;
+            max-width: 550px;
+        }
+
+        #mainBox {
+            padding: 2.3rem 2.3rem 1rem 2.3rem; /* top-right-bottom-left */
+            border-radius: 2px;
+            max-width: 60rem;
+            margin: 1rem auto auto;
+            color: #333333;
+        }
+    </style>
+</head>
+
+<body>
+<main class="container">
+    <a href="index.html" class="white-text text-lighten-4" style="margin-top:2rem"><i class="small material-icons">arrow_back</i> กลับ</a>
+    <div class="white-text center-align" style="padding-bottom:4vh;line-height:1.5rem;">
+        <h4>เปรียบเทียบคะแนนกสพท.</h4>
+        <h6>ปี 2557 - 2560</h6>
+        <div class="center-align minibox sector red darken-1 white-text" id="mini-al" style="display:none;font-size:1.3rem;line-height: 2rem;">
+            <h4>ระบบไม่สามารถทำงานได้</h4>
+            คุณกำลังใช้งานบนอุปกรณ์ที่ไม่เหมาะสม
+            <br/> ใช้งานได้ดีที่สุดบน
+            <a href="https://firefox.com">Mozilla Firefox</a> หรือ Google Chrome หรือ Safari รุ่นล่าสุด
+        </div>
+        <div class="z-depth-2 fullwidth grey lighten-5" id="mainBox">
+            <form>
+                <table>
+                    <tr style="border-bottom: none">
+                        <td>คะแนนรวมกสพท.</td>
+                        <td>
+                            <input class="validate" name="cotmes" id="iCotmes" min="0" max="100" step="0.0001" type="number"/>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <button type="submit" class="waves-effect waves-light btn-large orange fullwidth" id="calculateBtn" disabled>
+                    แสดงผล
+                </button>
+            </form>
+            <br/>
+            <br/>
+            <div class="divider"></div>
+            <br/>
+            <div id="chart_cotmes" style="width: 100%; height: 500px;">(กด แสดงผล)</div>
+            <table id="compareTable"></table>
+        </div>
+    </div>
+</main>
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            <a href="index.html">กลับไปยังหน้าแรก</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" integrity="sha256-W9FML0cw6SfScX3k0Z8iTWhaZGSEUrR3R3KWfRA6lnI="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+    $(function () {
+        var timeLoaded = (new Date()).getTime();
+        $("form").submit(function (e) {
+            e.preventDefault();
+            showGraph();
+
+            if ((new Date()).getTime() - timeLoaded > 1800000) {
+                // If page has been loaded more than 30 minutes ago, reload.
+                setTimeout(function () {
+                    window.location.reload();
+                }, 5000);
+            }
+        });
+
+        if (localStorage.getItem('cotmes-all')) {
+            $("#iCotmes").val(localStorage.getItem('cotmes-all'));
+        }
+        $("button").attr('disabled', false);
+    });
+
+
+    if (!self.fetch) {
+        // Check for old browser by checking Fetch API support, which is not present in old browsers.
+        // Visit http://caniuse.com for more information
+        $('#mini-al').show();
+
+        if (!(typeof Promise !== "undefined" && Promise.toString().indexOf("[native code]") !== -1)) {
+            // If Promise API not supported
+            setTimeout(function () {
+                $('body').css('background-color', '#f44336');
+            }, 2000);
+            $('.btn-large').removeClass('orange').addClass('grey');
+        }
+    }
+
+    function showGraph() {
+        if ($("#iCotmes").val() < 1) {
+            return;
+        }
+        var score = parseFloat($("#iCotmes").val());
+        localStorage.setItem("cotmes-all", $("#iCotmes").val());
+        var dataArray = [
+            ['ปี', 'จุฬา', 'ศิริราช', 'รามา', 'วชิระ', 'เชียงใหม่', 'ธรรมศาสตร์', 'ขอนแก่น', 'มศว', 'พระมงกุฎ (ช)', 'ที่ได้'],
+            ['2557', 70.9839, 69.4161, 67.9394, 65.6017, 66.3517, 65.3017, 63.6011, 63.775, 62.9606, score],
+            ['2558', 70.6258, 69.2878, 68.0145, 65.2906, 65.1331, 64.6533, 63.5123, 63.4257, 62.489, score],
+            ['2559', 69.3922, 67.375, 65.9556, 64.2825, 63.8756, 63.3253, 62.45, 61.4835, 60.8572, score],
+            ['2560', 74.1567, 69.8022, 70.1089, 67.6822, 67.1346, 67.1346, 65.955, 64.6472, 63.1105, score]
+        ];
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+        var options = {
+            vAxis: {title: 'คะแนน'},
+            isStacked: false,
+            colors: ['#ff8282', '#ffbc82', '#eaaa62', '#e6ff82', '#baff82', '#8aff82', '#82ffc2', '#82ddff', '#829bff', 'black']
+        };
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_cotmes'));
+        chart.draw(data, options);
+
+        gtag('event', 'show-cotmes');
+
+        var tableArray = [[], [], [], [], [], [], [], [], [], [], []];
+        var col = 0;
+        dataArray.forEach(function (elem) {
+            var row = 0;
+            elem.forEach(function (ele) {
+                tableArray[row][col] = ele;
+                row++;
+            });
+            col++;
+        });
+        console.log(tableArray);
+        var tableCode = '';
+        tableArray.forEach(function (elem) {
+            tableCode += '<tr><th>'+elem[0]+'</th><td>'+elem[1]+'</td><td>'+elem[2]+'</td><td>'+elem[3]+'</td><td>'+elem[4]+'</td></tr>';
+        });
+        $("#compareTable").html(tableCode.join());
+    }
+
+    google.charts.setOnLoadCallback(showGraph);
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-40738950-5"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-40738950-5');
+</script>
+</body>
+</html>

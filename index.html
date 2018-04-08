@@ -131,6 +131,11 @@
         #previousText {
             font-size: 0.9em;
         }
+
+        ul .btn {
+            margin-bottom: 0.8rem;
+            width: 100%
+        }
     </style>
 </head>
 
@@ -274,11 +279,11 @@
                     คำนวณ
                 </button>
                 <div class="sector yellow lighten-2" style="display:none;margin-top:1rem" id="scoreBox">
+                    <span>ยื่น <span id="titleText"></span> จุฬาลงกรณ์มหาวิทยาลัย</span><br />
                     <span id="howText"></span>
                     ได้คะแนนรวม
-                    <b id="score"></b> คะแนน
-                    <br/>
-                    <span id="previousText"></span><br/>
+                    <b id="score"></b> คะแนน<br/>
+                    <span id="previousText"></span>
                     <div id="chart_div"></div>
                     <span style="font-size:0.7rem">โปรดตรวจสอบเกณฑ์ขั้นต่ำและเงื่อนไขของแต่ละคณะ</span>
                 </div>
@@ -287,7 +292,10 @@
             <br/>
             <div class="divider"></div>
             <br/> อ่านเพิ่มเติม:
-            <ul class="browser-default">
+            <ul class="browser-default left-align">
+                <li>
+                    <a class="waves-effect waves-light btn modal-trigger" href="cotmes.html">คะแนนต่ำสุดกสพท. 2557 - 2560</a>
+                </li>
                 <li>
                     <a href="http://www.admissions.chula.ac.th/images/stories/r3.4_19_01_61.pdf" target="_blank">องค์ประกอบคะแนน แนบประกาศของจุฬาฯ 61</a>
                 </li>
@@ -357,13 +365,16 @@
             var howText = [];
             var previousText = [];
             var useB = false;
+            var scoreNotFound = false;
             var bList = ['beng', 'bsoc', 'bchm', 'btha', 'bbio', 'bphy', 'bmat'];
+            $("#titleText").text(list[$("#iFaculty").val()]["name"]);
             $("#howText").css("color", "#444444");
             for (var i in faculty) {
                 score += $("#i" + i).val() * faculty[i];
                 if ($("#i" + i).val() <= 0) {
                     alert("ไม่มีคะแนน " + i.toUpperCase());
                     $("#howText").css("color", "red");
+                    scoreNotFound = true;
                 }
                 howText.push(i.toUpperCase() + " x " + faculty[i]);
                 localStorage.setItem(i, $("#i" + i).val());
@@ -372,8 +383,15 @@
                 }
             }
             $("#score").text(score.toLocaleString('en-US'));
+            if ($("#iFaculty").val() == 'medicine' && score > 40) {
+                localStorage.setItem('cotmes-all', score);
+            }
             if (useB) {
-                $("#howText").hide();
+                if (scoreNotFound) {
+                    $("#howText").html("<span class='red-text'>มีคะแนนที่ต้องใช้ไม่ครบ</span><br />").show();
+                } else {
+                    $("#howText").hide();
+                }
             } else {
                 $("#howText").html("คำนวณจาก " + howText.join(" + ") + "<br />").show();
             }
