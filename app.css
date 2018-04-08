@@ -73,6 +73,7 @@ h4 {
     font-size: 0.9rem;
     margin: 2rem auto auto;
     max-width: 550px;
+    line-height: 1.8rem;
 }
 
 #mainBox {
@@ -94,4 +95,8 @@ ul .btn {
 
 #logo-container {
     font-size: 1.5rem;
+}
+
+ul.browser-default li {
+    line-height: 2rem;
 }

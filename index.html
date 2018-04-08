@@ -204,7 +204,7 @@
             <br/> อ่านเพิ่มเติม:
             <ul class="browser-default left-align">
                 <li>
-                    <a class="waves-effect waves-light btn modal-trigger" href="cotmes.html">คะแนนต่ำสุดกสพท. 2557 - 2560</a>
+                    <a class="waves-effect waves-light btn modal-trigger" onclick="viewCotmes()">คะแนนต่ำสุดกสพท. 2557 - 2560</a>
                 </li>
                 <li>
                     <a class="waves-effect waves-light btn modal-trigger purple" onclick="viewAll()">ดูแบบหลายคณะพร้อมกัน</a>
@@ -224,6 +224,7 @@
                 <li>
                     <a href="https://admission2.atc.chula.ac.th/" target="_blank">การคัดเลือกบุคคลเข้าศึกษาระดับปริญญาตรี TCAS 2561 (ศูนย์ทดสอบทางวิชาการแห่งจุฬาลงกรณ์มหาวิทยาลัย)</a>
                 </li>
+                <li>หมายเหตุ: เว็บไซต์นี้ไม่ได้รวบรวมข้อมูลของทุกคณะ และไม่ได้แสดงเงื่อนไขการสมัครทั้งหมด จึงควรศึกษาข้อมูลจากประกาศของจุฬาลงกรณ์มหาวิทยาลัยก่อนตัดสินใจเลือก</li>
             </ul>
         </div>
     </div>
@@ -297,7 +298,7 @@
                 }
             }
             $("#score").text(score.toLocaleString('en-US'));
-            if ($("#iFaculty").val() == 'medicine' && score > 40) {
+            if ($("#iFaculty").val() == 'medicine' && score > 5) {
                 localStorage.setItem('cotmes-all', score);
             }
             if (useB) {
@@ -381,6 +382,13 @@
             });
         }
     });
+
+    function viewCotmes() {
+        $("#iFaculty").val('medicine');
+        $('select').formSelect();
+        $('form').submit();
+        window.location.href = "cotmes.html";
+    }
 
     function viewAll() {
         fields.forEach(function (e) {
