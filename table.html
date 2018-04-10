@@ -14,6 +14,11 @@
           crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link href="app.css" rel="stylesheet"/>
+    <style>
+        .container {
+            min-width: 500px;
+        }
+    </style>
 </head>
 <body>
 <nav class="indigo" role="navigation">
@@ -30,7 +35,9 @@
     <a href="index.html" class="blue-text" style="margin-top:2rem"><i class="small material-icons">arrow_back</i> กลับ</a>
     <h5 class="center-align" style="font-weight: bold">ดูคณะทั้งหมด</h5>
     <table id="compareTable">
-        <tr><td>กำลังโหลด...</td></tr>
+        <tr>
+            <td>กำลังโหลด...</td>
+        </tr>
     </table>
     <p class="grey-text" style="font-size:0.85rem">หมายเหตุ:&ensp;ไม่แสดงคณะที่มีคะแนนสอบไม่ครบ, N/A หมายถึง ไม่มีข้อมูล, โปรดศึกษาเกณฑ์ขั้นต่ำและเงื่อนไขของแต่ละคณะด้วยตนเอง</p>
 </main>
@@ -79,7 +86,7 @@
                     }
 
                     if (!scoreNotFound) {
-                        tableCode += '<tr><td>' + list[i].name + '</td><td>'+score.toLocaleString('en-US')+'</td>';
+                        tableCode += '<tr><td>' + list[i].name + '</td><td>' + score.toLocaleString('en-US') + '</td>';
 
                         var fPrevious = list[i]["previous"];
                         if (fPrevious === undefined) {
@@ -90,7 +97,7 @@
                                 if (fPrevious[year.toString()] === undefined) {
                                     tableCode += '<td>-</td>';
                                 } else {
-                                    tableCode += '<td>'+fPrevious[year.toString()].toLocaleString('en-US');
+                                    tableCode += '<td>' + fPrevious[year.toString()].toLocaleString('en-US');
                                     var diff = (score - fPrevious[year.toString()]).toFixed(2);
                                     if (diff >= 0) {
                                         tableCode += "<br />(<span class='green-text'>+" + diff + "</span>)</td>";
@@ -102,7 +109,7 @@
                             }
                         }
 
-                        tableCode += '<td>'+((list[i].acceptance === undefined) ? '<span class="grey-text">N/A</span>' : list[i].acceptance)+'</td></tr>';
+                        tableCode += '<td>' + ((list[i].acceptance === undefined) ? '<span class="grey-text">N/A</span>' : list[i].acceptance) + '</td></tr>';
                     }
                 }
                 $("#compareTable").html(tableCode);

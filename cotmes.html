@@ -100,8 +100,16 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {packages: ['corechart']});
+    var timeLoaded = (new Date()).getTime();
+    var list;
     $(function () {
-        var timeLoaded = (new Date()).getTime();
+        fetch('medicine.json').then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            list = data.list;
+            google.charts.setOnLoadCallback(showGraph);
+        });
+
         $("form").submit(function (e) {
             e.preventDefault();
             showGraph();
@@ -136,31 +144,74 @@
     }
 
     function showGraph() {
-        if ($("#iCotmes").val() < 1) {
+        if (!$("#iCotmes").val()) {
+            $("#chart_cotmes").html("<h5>โปรดระบุคะแนนรวม</h5>");
+            return;
+        } else if (parseFloat($("#iCotmes").val()) < 55) {
+            $("#chart_cotmes").html("<h5>ขออภัย ไม่สามารถแสดงผลสำหรับคะแนนที่ต่ำกว่า 55</h5>");
             return;
         }
+
         var score = parseFloat($("#iCotmes").val());
         localStorage.setItem("cotmes-all", $("#iCotmes").val());
+
+        var facultyList = [];
+        list.forEach(function (faculty) {
+            var diff = score - faculty['2560'];
+            if (diff < 4 && diff > -7) {
+                facultyList.push(faculty);
+            }
+        });
         var dataArray = [
+            ['ปี'],
+            ['2558'],
+            ['2559'],
+            ['2560']
+        ];
+        facultyList.forEach(function (faculty) {
+            dataArray[0].push(faculty['University']);
+            dataArray[1].push(faculty['2558']);
+            dataArray[2].push(faculty['2559']);
+            dataArray[3].push(faculty['2560']);
+        });
+
+        dataArray[0].push('ที่ได้');
+        dataArray[1].push(score);
+        dataArray[2].push(score);
+        dataArray[3].push(score);
+        /*var dataArray = [
             ['ปี', 'จุฬา', 'ศิริราช', 'รามา', 'วชิระ', 'เชียงใหม่', 'ธรรมศาสตร์', 'ขอนแก่น', 'มศว', 'พระมงกุฎ (ช)', 'ที่ได้'],
             ['2557', 70.9839, 69.4161, 67.9394, 65.6017, 66.3517, 65.3017, 63.6011, 63.775, 62.9606, score],
             ['2558', 70.6258, 69.2878, 68.0145, 65.2906, 65.1331, 64.6533, 63.5123, 63.4257, 62.489, score],
             ['2559', 69.3922, 67.375, 65.9556, 64.2825, 63.8756, 63.3253, 62.45, 61.4835, 60.8572, score],
             ['2560', 74.1567, 69.8022, 70.1089, 67.6822, 67.1346, 66.6727, 65.955, 64.6472, 63.1105, score]
-        ];
+        ];*/
         var data = google.visualization.arrayToDataTable(dataArray);
+
+        var colorArray = [];
+        var colorAvailable = ['#ff8282', '#ffbc82', '#eaaa62', '#e6ff82', '#baff82', '#8aff82', '#82ffc2', '#82ddff', '#829bff'];
+        var colorNo = 0;
+        while (colorNo < facultyList.length) {
+            colorArray.push(colorAvailable[colorNo % colorAvailable.length]);
+            colorNo++;
+        }
+        colorArray.push('black');
+        console.log(colorArray);
 
         var options = {
             vAxis: {title: 'คะแนน'},
             isStacked: false,
-            colors: ['#ff8282', '#ffbc82', '#eaaa62', '#e6ff82', '#baff82', '#8aff82', '#82ffc2', '#82ddff', '#829bff', 'black']
+            colors: colorArray
         };
         var chart = new google.visualization.AreaChart(document.getElementById('chart_cotmes'));
         chart.draw(data, options);
 
         gtag('event', 'show-cotmes');
 
-        var tableArray = [[], [], [], [], [], [], [], [], [], [], []];
+        var tableArray = [];
+        dataArray[0].forEach(function () {
+            tableArray.push([]);
+        });
         var col = 0;
         dataArray.forEach(function (elem) {
             var row = 0;
@@ -170,16 +221,15 @@
             });
             col++;
         });
-        console.log(tableArray);
         var tableCode = '';
         var eNo = 0;
         tableArray.forEach(function (elem) {
             if (eNo === 0) {
-                tableCode += '<tr><th>' + elem[0] + '</th><th>' + elem[1] + '</th><th>' + elem[2] + '</th><th>' + elem[3] + '</th><th>' + elem[4] + '</th></tr>';
-            } else if (eNo <= 9) {
+                tableCode += '<tr><th>' + elem[0] + '</th><th>' + elem[1] + '</th><th>' + elem[2] + '</th><th>' + elem[3] + '</th></tr>';
+            } else if (eNo <= facultyList.length) {
                 tableCode += '<tr><th>' + elem[0] + '</th>';
                 var loopNo = 1;
-                while (loopNo <= 4) {
+                while (loopNo <= 3) {
                     tableCode += '<td>' + elem[loopNo];
 
                     var diff = (score - elem[loopNo]).toFixed(2);
@@ -198,8 +248,6 @@
         });
         $("#compareTable").html(tableCode);
     }
-
-    google.charts.setOnLoadCallback(showGraph);
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40738950-5"></script>
 <script>
