@@ -3,7 +3,7 @@
 <head>
     <!-- Project ChulaDirect: Chulalongkorn University Direct Entrance Score Calculator -->
     <!-- Copyright (C) 2018  Siwat Techavoranant -->
-    <!-- github.com/keenthekeen/ChulaDirect -->
+    <!-- https://github.com/keenthekeen/ChulaDirect -->
     <meta charset="UTF-8"/>
     <title>โปรแกรมคำนวณคะแนนรับตรงจุฬาฯ 2561</title>
     <meta property="og:title" content="โปรแกรมคำนวณคะแนนรับตรงจุฬาฯ 2561"/>
@@ -21,8 +21,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#3f51b5"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" integrity="sha256-tKn8A2U9uuN5rPr3gh4A9FYMJkarrzLVyks7aS/ZfBU="
-          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css" integrity="sha256-zvFVp826siCUuxc2KZRdlkALzLZWNb7FaJm9K1mRxW0=" crossorigin="anonymous" />
     <link href="app.css" rel="stylesheet"/>
     <style>
         body {
@@ -53,7 +52,7 @@
 <main class="container">
     <div class="white-text center-align" style="padding-top:5vh;padding-bottom:4vh;line-height:1.5rem;">
         <h4>คำนวณคะแนนรับตรงจุฬาฯ</h4>
-        <h6>(TCAS 2561 รอบ 3)</h6>
+        <h6>(TCAS 2561 รอบ 3/1)</h6>
         <div class="center-align minibox sector red darken-1 white-text" id="mini-al" style="display:none;font-size:1.3rem;line-height: 2rem;">
             <h4>ระบบไม่สามารถทำงานได้</h4>
             คุณกำลังใช้งานบนอุปกรณ์ที่ไม่เหมาะสม
@@ -210,7 +209,13 @@
                     <a class="waves-effect waves-light btn modal-trigger purple" onclick="viewAll()">ดูแบบหลายคณะพร้อมกัน</a>
                 </li>
                 <li>
+                    <a href="/ประกาศรับตรงจุฬา Recognized.pdf" target="_blank">รายซื่อผู้ผ่านการคัดเลือก 2561 (รอบ 3/1)</a>
+                </li>
+                <li>
                     <a href="http://www.admissions.chula.ac.th/images/stories/r3.4_19_01_61.pdf" target="_blank">องค์ประกอบคะแนน แนบประกาศของจุฬาฯ 2561</a>
+                </li>
+                <li>
+                    <a href="http://www.atc.chula.ac.th/admission2/pdf2018/TCAS61r3_CU_Min.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2561 (TCAS 3/1)</a>
                 </li>
                 <li>
                     <a href="http://www.atc.chula.ac.th/admission2/pdf2017/Score_DirectAdmissions60.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2560</a>
@@ -224,7 +229,7 @@
                 <li>
                     <a href="https://admission2.atc.chula.ac.th/" target="_blank">การคัดเลือกบุคคลเข้าศึกษาระดับปริญญาตรี TCAS 2561 (ศูนย์ทดสอบทางวิชาการแห่งจุฬาลงกรณ์มหาวิทยาลัย)</a>
                 </li>
-                <li>หมายเหตุ: เว็บไซต์นี้ไม่ได้รวบรวมข้อมูลของทุกคณะ และไม่ได้แสดงเงื่อนไขการสมัครทั้งหมด จึงควรศึกษาข้อมูลจากประกาศของจุฬาลงกรณ์มหาวิทยาลัยก่อนตัดสินใจเลือก</li>
+                <li>หมายเหตุ: เว็บไซต์นี้ไม่ได้รวบรวมข้อมูลของทุกคณะ และไม่ได้แสดงเงื่อนไขการสมัครทั้งหมด จึงต้องศึกษาข้อมูลจากประกาศของจุฬาลงกรณ์มหาวิทยาลัยก่อนตัดสินใจเลือก</li>
             </ul>
         </div>
     </div>
@@ -240,8 +245,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" integrity="sha256-W9FML0cw6SfScX3k0Z8iTWhaZGSEUrR3R3KWfRA6lnI="
-        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js" integrity="sha256-T6iGJTr91LvmSE0OD+GJ79ArVNS0JClRUKJuTPDr0ac=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {packages: ['corechart']});
@@ -333,7 +337,7 @@
                 }
                 $("#previousText").html(previousText.join("<br />"));
 
-                if (Object.keys(previous).length === 3) {
+                if (Object.keys(previous).length === 4) {
                     // Draw graph
                     var data = new google.visualization.DataTable();
                     data.addColumn('string', 'ปี');
@@ -354,7 +358,7 @@
                     };
 
                     data.addRows([
-                        ['2558', score, previous['2558']], ['2559', score, previous['2559']], ['2560', score, previous['2560']]
+                        ['2558', score, previous['2558']], ['2559', score, previous['2559']], ['2560', score, previous['2560']], ['2561', score, previous['2561']]
                     ]);
 
                     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));

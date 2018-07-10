@@ -10,8 +10,7 @@
     <meta name="robots" content="noindex, nofollow"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#3f51b5"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" integrity="sha256-tKn8A2U9uuN5rPr3gh4A9FYMJkarrzLVyks7aS/ZfBU="
-          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css" integrity="sha256-zvFVp826siCUuxc2KZRdlkALzLZWNb7FaJm9K1mRxW0=" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link href="app.css" rel="stylesheet"/>
     <style>
@@ -52,8 +51,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" integrity="sha256-W9FML0cw6SfScX3k0Z8iTWhaZGSEUrR3R3KWfRA6lnI="
-        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js" integrity="sha256-T6iGJTr91LvmSE0OD+GJ79ArVNS0JClRUKJuTPDr0ac=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     var list;
     $(function () {
@@ -63,7 +61,7 @@
             }).then(function (data) {
                 list = data;
 
-                var tableCode = '<tr><th>คณะ</th><th>คะแนนที่ได้</th><th>ต่ำสุดปี 60</th><th>ต่ำสุดปี 59</th><th>ต่ำสุดปี 58</th><th>จำนวนรับ (คน)</th></tr>';
+                var tableCode = '<tr><th>คณะ</th><th>คะแนนที่ได้</th><th>ต่ำสุดปี 61</th><th>ต่ำสุดปี 60</th><th>ต่ำสุดปี 59</th><th>ต่ำสุดปี 58</th><th>จำนวนรับ (คน)</th></tr>';
 
                 // Loop through faculties
                 for (var i in list) {
@@ -90,9 +88,9 @@
 
                         var fPrevious = list[i]["previous"];
                         if (fPrevious === undefined) {
-                            tableCode += '<td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td>';
+                            tableCode += '<td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td>';
                         } else {
-                            var year = 2560;
+                            var year = 2561;
                             while (year >= 2558) {
                                 if (fPrevious[year.toString()] === undefined) {
                                     tableCode += '<td>-</td>';
