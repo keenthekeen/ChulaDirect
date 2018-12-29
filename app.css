@@ -1,21 +1,22 @@
-@font-face {
-    font-family: 'THSarabunNew';
-    src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot');
-    src: url('https://static.keendev.net/font/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'), url('https://static.keendev.net/font/thsarabunnew-webfont.woff') format('woff'), url('https://static.keendev.net/font/thsarabunnew-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal
-}
+@import url('https://fonts.googleapis.com/css?family=Sarabun:300,600');
 
 body {
-    font-family: 'THSarabunNew', Sans-Serif !important;
+    font-family: 'Sarabun', serif;
+    font-weight: 300;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
 
+b, strong, h4, h5, h6, .bold, th {
+    font-weight: 600;
+}
+
 main {
     flex: 1 0 auto;
     min-height: 300px;
+    padding-top: 15px;
+    font-size: 18px
 }
 
 .page-footer a:hover {
@@ -26,17 +27,8 @@ main {
     color: lightgrey;
 }
 
-.footer-copyright a:hover {
-    text-decoration: underline
-}
-
 .fullwidth {
     width: 100%
-}
-
-main {
-    padding-top: 15px;
-    font-size: 18px
 }
 
 footer img {
@@ -45,24 +37,14 @@ footer img {
     top: 6px
 }
 
-.fullwidth {
-    width: 100%
-}
-
 .sector {
     margin: 0.5rem 0 1rem 0;
     border: 1px solid #e0e0e0;
-    border-radius: 3px;
+    border-radius: 2px;
     background-color: #fff;
     line-height: 1.8rem;
     padding: 15px 25px 15px 15px;
     width: 100%
-}
-
-h4 {
-    font-weight: 900;
-    text-shadow: 0.7px 0.7px #aaa;
-    margin-bottom: 2rem;
 }
 
 .grey-text a {
