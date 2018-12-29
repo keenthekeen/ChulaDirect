@@ -2,7 +2,7 @@
 
 Chulalongkorn University Direct Entrance Score Calculator
 
-(for TCAS 2561 Round 3)
+(for TCAS 2562 Round 3)
 
 Copyright (C) 2018  Siwat Techavoranant
 
