@@ -45,7 +45,7 @@
         }
 
         #mainBox {
-            max-width: 45rem;
+            max-width: 48rem;
         }
     </style>
 </head>
@@ -235,8 +235,10 @@
 <footer class="page-footer">
     <div class="footer-copyright">
         <div class="container">
-            ข้อมูลที่กรอกอาจเก็บไว้ในเครื่องเพื่อดูครั้งต่อไป แต่จะไม่ถูกส่งไปยังเซิร์ฟเวอร์ | <a href="javascript:clearStorage()">ล้างข้อมูล</a> | <a href="https://github.com/keenthekeen/ChulaDirect" target="_blank"
-                                                                                                  onclick="gtag('event', 'link', 'github');"><img src="github.png"/></a>
+            ข้อมูลที่กรอกอาจเก็บไว้ในเครื่องเพื่อดูครั้งต่อไป แต่จะไม่ถูกส่งไปยังเซิร์ฟเวอร์ | <a href="javascript:clearStorage()">ล้างข้อมูล</a> | <a href="https://github.com/keenthekeen/ChulaDirect"
+                                                                                                                                                       target="_blank"
+                                                                                                                                                       onclick="gtag('event', 'link', 'github');"><img
+                src="github.png"/></a>
         </div>
     </div>
 </footer>
@@ -249,7 +251,24 @@
 </script>
 <script>
     var list;
-    var fields = ['gat', 'pat1', 'pat2', 'pat3', 'pat5', 'pat7', 'beng', 'bsoc', 'bchm', 'btha', 'bbio', 'bphy', 'bmat', 'med'];
+    var fields = ['gat', 'pat1', 'pat2', 'pat3', 'pat4', 'pat5', 'pat7', 'beng', 'bsoc', 'bchm', 'btha', 'bbio', 'bphy', 'bmat', 'med'];
+    var fieldName = {
+        'gat': 'GAT',
+        'pat1': 'PAT1',
+        'pat2': 'PAT2',
+        'pat3': 'PAT3',
+        'pat4': 'PAT4',
+        'pat5': 'PAT5',
+        'pat7': 'PAT7',
+        'beng': 'อังกฤษสามัญ',
+        'bsoc': 'สังคมสามัญ',
+        'bchm': 'เคมีสามัญ',
+        'btha': 'ไทยสามัญ',
+        'bbio': 'ชีววิทยาสามัญ',
+        'bphy': 'ฟิสิกส์สามัญ',
+        'bmat': 'คณิตสามัญ',
+        'med': 'ความถนัดแพทย์'
+    };
     $(function () {
         var timeLoaded = (new Date()).getTime();
         fetch('chula.json').then(function (response) {
@@ -285,14 +304,12 @@
             for (var i in faculty) {
                 score += $("#i" + i).val() * faculty[i];
                 if ($("#i" + i).val() <= 0) {
-                    //alert();
-                    M.toast({html: "ไม่มีคะแนน " + i.toUpperCase()});
+                    M.toast({html: "โปรดกรอกคะแนน " + fieldName[i]});
                     $("#howText").css("color", "red");
-                    scoreNotFound = true;
                     $("#scoreBox").slideUp();
                     return;
                 }
-                howText.push(i.toUpperCase() + " x " + faculty[i]);
+                howText.push(fieldName[i] + " x " + faculty[i]);
                 localStorage.setItem(i, $("#i" + i).val());
                 if (bList.indexOf(i) != -1) {
                     useB = true;
@@ -302,15 +319,7 @@
             if ($("#iFaculty").val() == 'medicine' && score > 5) {
                 localStorage.setItem('cotmes-all', score);
             }
-            if (useB) {
-                if (scoreNotFound) {
-                    $("#howText").html("<span class='red-text'>มีคะแนนที่ต้องใช้ไม่ครบ</span><br />").show();
-                } else {
-                    $("#howText").hide();
-                }
-            } else {
-                $("#howText").html("คำนวณจาก " + howText.join(" + ") + "<br />").show();
-            }
+            $("#howText").html("คำนวณจาก " + howText.join(" + ") + "<br />").show();
             $("#scoreBox").slideDown();
             gtag('event', 'calculate', {
                 'faculty': $("#iFaculty").val()
