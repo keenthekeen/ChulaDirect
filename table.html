@@ -38,7 +38,7 @@
             <td>กำลังโหลด...</td>
         </tr>
     </table>
-    <p class="grey-text" style="font-size:0.85rem">หมายเหตุ:&ensp;ไม่แสดงคณะที่มีคะแนนสอบไม่ครบ, N/A หมายถึง ไม่มีข้อมูล, โปรดศึกษาเกณฑ์ขั้นต่ำและเงื่อนไขของแต่ละคณะด้วยตนเอง</p>
+    <p class="grey-text" style="font-size:0.85rem">หมายเหตุ:&ensp;ไม่แสดงคณะที่มีคะแนนสอบไม่ครบ, N/A หมายถึง ไม่มีข้อมูล, โปรดศึกษาเกณฑ์ขั้นต่ำและเงื่อนไขของแต่ละคณะด้วยตนเอง, คะแนนปี 2561 อิงจากรอบ 3/1</p>
 </main>
 
 <footer class="page-footer indigo">
@@ -54,7 +54,7 @@
 <script type="text/javascript">
     var list;
     $(function () {
-        if (localStorage.getItem('gat') || localStorage.getItem('bsoc')) {
+        if (localStorage.getItem('gat') || localStorage.getItem('bsoc') || localStorage.getItem('pat1')) {
             fetch('chula.json').then(function (response) {
                 return response.json();
             }).then(function (data) {

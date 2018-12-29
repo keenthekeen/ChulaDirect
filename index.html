@@ -16,12 +16,14 @@
     <meta name="twitter:image" content="https://chuladirect.keendev.net/screen.png"/>
 
     <meta name="description" content="โปรแกรมคำนวณคะแนนสำหรับยื่นตรงเข้าจุฬาลงกรณ์มหาวิทยาลัย TCAS รอบ 3"/>
-    <meta name="keyword" content="คำนวณคะแนน รับตรง จุฬา TCAS รอบ 3 แพทย์ แพทยศาสตร์ วิศวะ วิศวกรรมศาสตร์ รัฐศาสตร์ บัญชี นิเทศ อักษร จิตวิทยา เศรษฐศาสตร์ นิติศาสตร์ สหเวชศาสตร์ วิทยาศาสตร์ กสพท 2562"/>
+    <meta name="keyword"
+          content="คำนวณคะแนน รับตรง จุฬา TCAS รอบ 3 แพทย์ แพทยศาสตร์ วิศวะ วิศวกรรมศาสตร์ รัฐศาสตร์ บัญชี นิเทศ อักษร จิตวิทยา เศรษฐศาสตร์ นิติศาสตร์ สหเวชศาสตร์ วิทยาศาสตร์ กสพท 2562"/>
     <meta name="google" content="notranslate"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#3f51b5"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g="
+          crossorigin="anonymous"/>
     <link href="app.css" rel="stylesheet"/>
     <style>
         body {
@@ -52,7 +54,7 @@
 <main class="container">
     <div class="white-text center-align" style="padding-top:5vh;padding-bottom:4vh;line-height:1.5rem;">
         <h4>คำนวณคะแนนรับตรงจุฬาฯ/กสพท.</h4>
-        <h6>(TCAS 2562 รอบ 3)</h6><br />
+        <h6>(TCAS 2562 รอบ 3)</h6><br/>
         <div class="center-align minibox sector red darken-1 white-text" id="mini-al" style="display:none;font-size:1.3rem;line-height: 2rem;">
             <h4>ระบบไม่สามารถทำงานได้</h4>
             คุณกำลังใช้งานบนอุปกรณ์ที่ไม่เหมาะสม
@@ -90,12 +92,12 @@
                             <input class="validate" name="continue_score[pat3]" id="ipat3" min="0" max="300" step="0.01" type="number"/>
                         </td>
                     </tr>
-                    <!--tr>
-                    <td>PAT4 (สถาปัตยกรรม)</td>
-                    <td>
-                        <input class="validate" name="continue_score[pat4]" id="ipat4" min="0" max="300" step="0.01" type="number" />
-                    </td>
-                </tr-->
+                    <tr>
+                        <td>PAT4 (สถาปัตยกรรม)</td>
+                        <td>
+                            <input class="validate" name="continue_score[pat4]" id="ipat4" min="0" max="300" step="0.01" type="number"/>
+                        </td>
+                    </tr>
                     <tr>
                         <td>PAT5 (ครู)</td>
                         <td>
@@ -223,7 +225,8 @@
                 <li>
                     <a href="https://web.archive.org/web/20180329021259/http://www.atc.chula.ac.th/admission2/Score58.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2558</a>
                 </li>
-                <li>หมายเหตุ: เว็บไซต์นี้ไม่ได้รวบรวมข้อมูลของทุกคณะ และไม่ได้แสดงเงื่อนไขการสมัครทั้งหมด จึงต้องศึกษาข้อมูลจากประกาศของจุฬาลงกรณ์มหาวิทยาลัยก่อนตัดสินใจเลือก</li>
+                <li>เว็บไซต์นี้ไม่ได้รวบรวมข้อมูลของทุกคณะ และไม่ได้แสดงเงื่อนไขการสมัครทั้งหมด จึงต้องศึกษาข้อมูลจากประกาศของจุฬาลงกรณ์มหาวิทยาลัยก่อนตัดสินใจเลือก</li>
+                <li>ข้อมูลคะแนนปี 2561 อิงจากรอบ 3/1</li>
             </ul>
         </div>
     </div>
@@ -232,7 +235,8 @@
 <footer class="page-footer">
     <div class="footer-copyright">
         <div class="container">
-            ข้อมูลที่กรอกอาจเก็บไว้ในเครื่องเพื่อดูครั้งต่อไป แต่จะไม่ถูกส่งไปยังเซิร์ฟเวอร์ | <a href="https://github.com/keenthekeen/ChulaDirect" target="_blank" onclick="gtag('event', 'link', 'github');"><img src="github.png"/></a>
+            ข้อมูลที่กรอกอาจเก็บไว้ในเครื่องเพื่อดูครั้งต่อไป แต่จะไม่ถูกส่งไปยังเซิร์ฟเวอร์ | <a href="javascript:clearStorage()">ล้างข้อมูล</a> | <a href="https://github.com/keenthekeen/ChulaDirect" target="_blank"
+                                                                                                  onclick="gtag('event', 'link', 'github');"><img src="github.png"/></a>
         </div>
     </div>
 </footer>
@@ -398,6 +402,11 @@
         }
     }
 
+    function clearStorage() {
+        $("input").val("");
+        localStorage.clear();
+        location.reload();
+    }
 
     if (!self.fetch) {
         // Check for old browser by checking Fetch API support, which is not present in old browsers.
