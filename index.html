@@ -298,10 +298,9 @@
             var howText = [];
             var previousText = [];
             var useB = false;
-            var scoreNotFound = false;
             var bList = ['beng', 'bsoc', 'bchm', 'btha', 'bbio', 'bphy', 'bmat'];
             $("#titleText").text(list[$("#iFaculty").val()]["name"]);
-            $("#howText").css("color", "#444444");
+            $("#howText").css("color", "#666");
             for (var i in faculty) {
                 score += $("#i" + i).val() * faculty[i];
                 if ($("#i" + i).val() <= 0) {
@@ -332,7 +331,7 @@
                     if (Math.abs(diff) < 50) {
                         diff = diff.toFixed(3);
                     } else {
-                        diff = diff.toFixed(1);
+                        diff = diff.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
                     var pt = "คะแนนต่ำสุดปี " + i + ": " + previous[i].toLocaleString('en-US');
                     if (diff >= 0) {

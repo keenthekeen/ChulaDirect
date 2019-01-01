@@ -97,9 +97,9 @@
                                     tableCode += '<td>' + fPrevious[year.toString()].toLocaleString('en-US');
                                     var diff = (score - fPrevious[year.toString()]).toFixed(2);
                                     if (diff >= 0) {
-                                        tableCode += "<br />(<span class='green-text'>+" + diff + "</span>)</td>";
+                                        tableCode += "<br />(<span class='green-text'>+" + diff.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>)</td>";
                                     } else {
-                                        tableCode += "<br />(<span class='red-text'>" + diff + "</span>)</td>";
+                                        tableCode += "<br />(<span class='red-text'>" + diff.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>)</td>";
                                     }
                                 }
                                 year--;
