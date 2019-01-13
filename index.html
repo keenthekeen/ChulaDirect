@@ -328,16 +328,17 @@
             if (previous !== undefined) {
                 for (var i in previous) {
                     var diff = (score - previous[i]);
+                    var diffText;
                     if (Math.abs(diff) < 50) {
-                        diff = diff.toFixed(3);
+                        diffText = diff.toFixed(3);
                     } else {
-                        diff = diff.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        diffText = diff.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
                     var pt = "คะแนนต่ำสุดปี " + i + ": " + previous[i].toLocaleString('en-US');
                     if (diff >= 0) {
-                        pt += " (<span class='green-text'>+" + diff + "</span>)";
+                        pt += " (<span class='green-text'>+" + diffText + "</span>)";
                     } else {
-                        pt += " (<span class='red-text'>" + diff + "</span>)";
+                        pt += " (<span class='red-text'>" + diffText + "</span>)";
                     }
                     previousText.push(pt);
                 }
