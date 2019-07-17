@@ -5,14 +5,14 @@
     <!-- Copyright (C) 2019  Siwat Techavoranant -->
     <!-- github.com/keenthekeen/ChulaDirect -->
     <meta charset="UTF-8"/>
-    <title>คะแนนกสพท. 2558 - 2561</title>
-    <meta property="og:title" content="คะแนนกสพท. 2558 - 2561"/>
+    <title>คะแนนกสพท. 2558 - 2562</title>
+    <meta property="og:title" content="คะแนนกสพท. 2558 - 2562"/>
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="th_TH"/>
     <meta property="og:image" content="https://chuladirect.keendev.net/screen-cotmes.png"/>
 
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="คะแนนกสพท. 2558 - 2561"/>
+    <meta name="twitter:title" content="คะแนนกสพท. 2558 - 2562"/>
     <meta name="twitter:image" content="https://chuladirect.keendev.net/screen-cotmes.png"/>
 
     <meta name="google" content="notranslate"/>
@@ -52,7 +52,7 @@
     <a href="index.html" class="white-text" style="margin-top:2rem"><i class="small material-icons">arrow_back</i> กลับ</a>
     <div class="white-text center-align" style="padding-bottom:4vh;line-height:1.5rem;">
         <h4>เปรียบเทียบคะแนนรับตรงกสพท.</h4>
-        <h6>คะแนนต่ำสุดรายคณะ ปี 2558 - 2561</h6>
+        <h6>คะแนนต่ำสุดรายคณะ ปี 2558 - 2562</h6>
         <div class="center-align minibox sector red darken-1 white-text" id="mini-al" style="display:none;font-size:1.3rem;line-height: 2rem;">
             <h4>ระบบไม่สามารถทำงานได้</h4>
             คุณกำลังใช้งานบนอุปกรณ์ที่ไม่เหมาะสม
@@ -155,7 +155,7 @@
 
         var facultyList = [];
         list.forEach(function (faculty) {
-            var diff = score - faculty['2561'];
+            var diff = score - faculty['2562'];
             if (diff < 4 && diff > -7) {
                 facultyList.push(faculty);
             }
@@ -165,7 +165,8 @@
             ['2558'],
             ['2559'],
             ['2560'],
-            ['2561']
+            ['2561'],
+            ['2562']
         ];
         facultyList.forEach(function (faculty) {
             dataArray[0].push(faculty['University']);
@@ -173,6 +174,7 @@
             dataArray[2].push(faculty['2559']);
             dataArray[3].push(faculty['2560']);
             dataArray[4].push(faculty['2561']);
+            dataArray[5].push(faculty['2562']);
         });
 
         dataArray[0].push('ที่ได้');
@@ -180,6 +182,7 @@
         dataArray[2].push(score);
         dataArray[3].push(score);
         dataArray[4].push(score);
+        dataArray[5].push(score);
 
         var data = google.visualization.arrayToDataTable(dataArray);
 
@@ -220,11 +223,11 @@
         var eNo = 0;
         tableArray.forEach(function (elem) {
             if (eNo === 0) {
-                tableCode += '<tr><th>' + elem[0] + '</th><th>' + elem[1] + '</th><th>' + elem[2] + '</th><th>' + elem[3] + '</th><th>' + elem[4] + '</th></tr>'; // Year specific
+                tableCode += '<tr><th>' + elem[0] + '</th><th>' + elem[1] + '</th><th>' + elem[2] + '</th><th>' + elem[3] + '</th><th>' + elem[4] + '</th><th>' + elem[5] + '</th></tr>'; // Year specific
             } else if (eNo <= facultyList.length) {
                 tableCode += '<tr><th>' + elem[0] + '</th>';
                 var loopNo = 1;
-                while (loopNo <= 4) { // Year specific
+                while (loopNo <= 5) { // Year specific
                     tableCode += '<td>' + elem[loopNo];
 
                     var diff = (score - elem[loopNo]).toFixed(2);
