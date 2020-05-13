@@ -5,14 +5,14 @@
     <!-- Copyright (C) 2019  Siwat Techavoranant -->
     <!-- github.com/keenthekeen/ChulaDirect -->
     <meta charset="UTF-8"/>
-    <title>คะแนนกสพท. 2558 - 2562</title>
-    <meta property="og:title" content="คะแนนกสพท. 2558 - 2562"/>
+    <title>คะแนนกสพท. 2558 - 2563</title>
+    <meta property="og:title" content="คะแนนกสพท. 2558 - 2563"/>
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="th_TH"/>
     <meta property="og:image" content="https://chuladirect.keendev.net/screen-cotmes.png"/>
 
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="คะแนนกสพท. 2558 - 2562"/>
+    <meta name="twitter:title" content="คะแนนกสพท. 2558 - 2563"/>
     <meta name="twitter:image" content="https://chuladirect.keendev.net/screen-cotmes.png"/>
 
     <meta name="google" content="notranslate"/>
@@ -52,7 +52,7 @@
     <a href="index.html" class="white-text" style="margin-top:2rem"><i class="small material-icons">arrow_back</i> กลับ</a>
     <div class="white-text center-align" style="padding-bottom:4vh;line-height:1.5rem;">
         <h4>เปรียบเทียบคะแนนรับตรงกสพท.</h4>
-        <h6>คะแนนต่ำสุดรายคณะ ปี 2558 - 2562</h6>
+        <h6>คะแนนต่ำสุดรายคณะ ปี 2558 - 2563</h6>
         <div class="center-align minibox sector red darken-1 white-text" id="mini-al" style="display:none;font-size:1.3rem;line-height: 2rem;">
             <h4>ระบบไม่สามารถทำงานได้</h4>
             คุณกำลังใช้งานบนอุปกรณ์ที่ไม่เหมาะสม
@@ -93,7 +93,7 @@
     </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" integrity="sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -166,7 +166,8 @@
             ['2559'],
             ['2560'],
             ['2561'],
-            ['2562']
+            ['2562'],
+            ['2563']
         ];
         facultyList.forEach(function (faculty) {
             dataArray[0].push(faculty['University']);
@@ -175,6 +176,7 @@
             dataArray[3].push(faculty['2560']);
             dataArray[4].push(faculty['2561']);
             dataArray[5].push(faculty['2562']);
+            dataArray[6].push(faculty['2563']);
         });
 
         dataArray[0].push('ที่ได้');
@@ -183,6 +185,7 @@
         dataArray[3].push(score);
         dataArray[4].push(score);
         dataArray[5].push(score);
+        dataArray[6].push(score);
 
         var data = google.visualization.arrayToDataTable(dataArray);
 
@@ -203,7 +206,9 @@
         var chart = new google.visualization.AreaChart(document.getElementById('chart_cotmes'));
         chart.draw(data, options);
 
-        gtag('event', 'show-cotmes');
+        gtag('event', 'show-cotmes', {
+            'value': score
+        });
 
         var tableArray = [];
         dataArray[0].forEach(function () {
@@ -226,7 +231,7 @@
             } else if (eNo <= facultyList.length) {
                 tableCode += '<tr><th>' + elem[0] + '</th>';
                 var loopNo = 1;
-                while (loopNo <= 5) { // Year specific
+                while (loopNo <= 6) { // Year specific
                     tableCode += '<td>' + elem[loopNo];
 
                     var diff = (score - elem[loopNo]).toFixed(2);

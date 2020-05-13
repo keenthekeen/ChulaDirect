@@ -205,14 +205,18 @@
             <div class="divider"></div>
             <br/> อ่านเพิ่มเติม:
             <ul class="browser-default left-align">
+                <li>เว็บไซต์นี้ไม่ได้รวบรวมข้อมูลของทุกคณะ และไม่ได้แสดงเงื่อนไขการสมัครทั้งหมด จึงต้องศึกษาข้อมูลจากประกาศของจุฬาลงกรณ์มหาวิทยาลัย/กสพท. ก่อนตัดสินใจเลือก</li>
                 <li>
-                    <a class="waves-effect waves-light btn modal-trigger" onclick="viewCotmes()">เทียบกับคะแนนต่ำสุดกสพท. 5 ปีย้อนหลัง</a>
+                    <a class="waves-effect waves-light btn modal-trigger" onclick="viewCotmes()">เทียบกับคะแนนต่ำสุดกสพท. 6 ปีย้อนหลัง</a>
                 </li>
                 <li>
                     <a class="waves-effect waves-light btn modal-trigger purple" onclick="viewAll()">ดูคณะในจุฬาฯ ที่ยื่นได้ทั้งหมด</a>
                 </li>
                 <li>
                     <a href="http://www.admissions.chula.ac.th/tcas3.html" target="_blank">รายละเอียด TCAS รอบ 3 จุฬาฯ</a>
+                </li>
+                <li>
+                    <a href="/download/chuladirect-62-min.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2562</a>
                 </li>
                 <li>
                     <a href="https://twitter.com/socialdome/status/1002378132098150400" target="_blank" rel="nofollow">คะแนนสูงสุด-ต่ำสุด 2561 (TCAS 3/1)</a>
@@ -226,9 +230,9 @@
                 <li>
                     <a href="https://web.archive.org/web/20180329021259/http://www.atc.chula.ac.th/admission2/Score58.pdf" target="_blank">คะแนนสูงสุด-ต่ำสุด 2558</a>
                 </li>
-                <li>เว็บไซต์นี้ไม่ได้รวบรวมข้อมูลของทุกคณะ และไม่ได้แสดงเงื่อนไขการสมัครทั้งหมด จึงต้องศึกษาข้อมูลจากประกาศของจุฬาลงกรณ์มหาวิทยาลัยก่อนตัดสินใจเลือก</li>
-                <li>ต้องใช้คะแนนสอบของปีล่าสุดเท่านั้น</li>
+                <li>จุฬาฯ และกสพท. กำหนดให้ใช้คะแนนสอบของปีล่าสุดเท่านั้น</li>
                 <li>ข้อมูลคะแนนปี 2561 อิงจากรอบ 3/1</li>
+                <li><a href="https://mailhide.io/e/GimJ7" rel="nofollow">ติดต่อผู้ดูแลระบบ เสนอแนะ (อีเมล)</a></li>
             </ul>
         </div>
     </div>
@@ -237,7 +241,7 @@
 <footer class="page-footer">
     <div class="footer-copyright">
         <div class="container">
-            ข้อมูลที่กรอกอาจเก็บไว้ในเครื่องเพื่อดูครั้งต่อไป แต่จะไม่ถูกส่งไปยังเซิร์ฟเวอร์ | <a href="javascript:clearStorage()">ล้างข้อมูล</a> | <a href="https://github.com/keenthekeen/ChulaDirect"
+            ข้อมูลที่กรอกอาจเก็บไว้ในเครื่องเพื่อดูครั้งต่อไป | <a href="javascript:clearStorage()">ล้างข้อมูล</a> | <a href="https://github.com/keenthekeen/ChulaDirect"
                                                                                                                                                        target="_blank"
                                                                                                                                                        onclick="gtag('event', 'link', 'github');"><img
                 src="github.png"/></a>
@@ -245,7 +249,7 @@
     </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" integrity="sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -323,7 +327,7 @@
             $("#howText").html("คำนวณจาก " + howText.join(" + ") + "<br />").show();
             $("#scoreBox").slideDown();
             gtag('event', 'calculate', {
-                'faculty': $("#iFaculty").val()
+                'value': $("#iFaculty").val()
             });
             var previous = list[$("#iFaculty").val()]["previous"];
             if (previous !== undefined) {
