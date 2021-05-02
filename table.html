@@ -2,10 +2,10 @@
 <html>
 <head>
     <!-- Project ChulaDirect: Chulalongkorn University Direct Entrance Score Calculator -->
-    <!-- Copyright (C) 2018-2020  Siwat Techavoranant -->
+    <!-- Copyright (C) 2018-2021  Siwat Techavoranant -->
     <!-- github.com/keenthekeen/ChulaDirect -->
     <meta charset="UTF-8"/>
-    <title>ดูภาพรวม รับตรงจุฬา 2563</title>
+    <title>ดูภาพรวม รับตรงจุฬา 2564</title>
     <meta name="google" content="notranslate"/>
     <meta name="robots" content="noindex, nofollow"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -23,7 +23,7 @@
 <nav class="indigo" role="navigation">
     <div class="nav-wrapper container">
         <a id="logo-container" href="/" class="brand-logo th">
-            คำนวณคะแนนรับตรงจุฬาฯ 2563
+            คำนวณคะแนนรับตรงจุฬาฯ 2564
         </a>
         <ul class="right hide-on-med-and-down">
             <li class="active"><a href="index.html">หน้าแรก</a></li>
@@ -60,7 +60,7 @@
             }).then(function (data) {
                 list = data;
 
-                var tableCode = '<tr><th>คณะ</th><th>คะแนนที่ได้</th><th>ต่ำสุดปี 62</th><th>ต่ำสุดปี 61</th><th>ต่ำสุดปี 60</th><th>ต่ำสุดปี 59</th><th>ต่ำสุดปี 58</th><th>จำนวนรับ (คน)</th></tr>';
+                var tableCode = '<tr><th>คณะ</th><th>คะแนนที่ได้</th><th>ต่ำสุดปี 63</th><th>ต่ำสุดปี 62</th><th>ต่ำสุดปี 61</th><th>ต่ำสุดปี 60</th><th>ต่ำสุดปี 59</th><th>ต่ำสุดปี 58</th><th>จำนวนรับ (คน)</th></tr>';
 
                 // Loop through faculties
                 for (var i in list) {
@@ -87,9 +87,9 @@
 
                         var fPrevious = list[i]["previous"];
                         if (fPrevious === undefined) {
-                            tableCode += '<td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td>';
+                            tableCode += '<td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td>';
                         } else {
-                            var year = 2562;
+                            var year = 2563;
                             while (year >= 2558) {
                                 if (fPrevious[year.toString()] === undefined) {
                                     tableCode += '<td>-</td>';
