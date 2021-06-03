@@ -167,7 +167,8 @@
             ['2560'],
             ['2561'],
             ['2562'],
-            ['2563']
+            ['2563'],
+            ['2564']
         ];
         facultyList.forEach(function (faculty) {
             dataArray[0].push(faculty['University']);
@@ -177,6 +178,7 @@
             dataArray[4].push(faculty['2561']);
             dataArray[5].push(faculty['2562']);
             dataArray[6].push(faculty['2563']);
+            dataArray[7].push(faculty['2564']);
         });
 
         dataArray[0].push('ที่ได้');
@@ -186,6 +188,7 @@
         dataArray[4].push(score);
         dataArray[5].push(score);
         dataArray[6].push(score);
+        dataArray[7].push(score);
 
         var data = google.visualization.arrayToDataTable(dataArray);
 
@@ -227,11 +230,11 @@
         var eNo = 0;
         tableArray.forEach(function (elem) {
             if (eNo === 0) {
-                tableCode += '<tr><th>' + elem[0] + '</th><th>' + elem[1] + '</th><th>' + elem[2] + '</th><th>' + elem[3] + '</th><th>' + elem[4] + '</th><th>' + elem[5] + '</th><th>' + elem[6] + '</th></tr>'; // Year specific
+                tableCode += '<tr><th>' + elem[0] + '</th><th>' + elem[1] + '</th><th>' + elem[2] + '</th><th>' + elem[3] + '</th><th>' + elem[4] + '</th><th>' + elem[5] + '</th><th>' + elem[6] + '</th><th>' + elem[7] + '</th></tr>'; // Year specific
             } else if (eNo <= facultyList.length) {
                 tableCode += '<tr><th>' + elem[0] + '</th>';
                 var loopNo = 1;
-                while (loopNo <= 6) { // Year specific
+                while (loopNo <= 7) { // Year specific
                     tableCode += '<td>' + elem[loopNo];
 
                     var diff = (score - elem[loopNo]).toFixed(2);
