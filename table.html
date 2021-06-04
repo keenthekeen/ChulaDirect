@@ -60,7 +60,7 @@
             }).then(function (data) {
                 list = data;
 
-                var tableCode = '<tr><th>คณะ</th><th>คะแนนที่ได้</th><th>ต่ำสุดปี 63</th><th>ต่ำสุดปี 62</th><th>ต่ำสุดปี 61</th><th>ต่ำสุดปี 60</th><th>ต่ำสุดปี 59</th><th>ต่ำสุดปี 58</th><th>จำนวนรับ (คน)</th></tr>';
+                var tableCode = '<tr><th>คณะ</th><th>คะแนนที่ได้</th><th>ต่ำสุดปี 64</th><th>ต่ำสุดปี 63</th><th>ต่ำสุดปี 62</th><th>ต่ำสุดปี 61</th><th>ต่ำสุดปี 60</th><th>ต่ำสุดปี 59</th><th>ต่ำสุดปี 58</th><th>จำนวนรับ (คน)</th></tr>';
 
                 // Loop through faculties
                 for (var i in list) {
@@ -87,9 +87,9 @@
 
                         var fPrevious = list[i]["previous"];
                         if (fPrevious === undefined) {
-                            tableCode += '<td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td>';
+                            tableCode += '<td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td><td class="grey-text">N/A</td>';
                         } else {
-                            var year = 2563;
+                            var year = 2564;
                             while (year >= 2558) {
                                 if (fPrevious[year.toString()] === undefined) {
                                     tableCode += '<td>-</td>';
