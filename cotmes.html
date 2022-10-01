@@ -2,23 +2,24 @@
 <html>
 <head>
     <!-- Project ChulaDirect: Chulalongkorn University Direct Entrance Score Calculator -->
-    <!-- Copyright (C) 2019  Siwat Techavoranant -->
+    <!-- Copyright (C) 2019-2022  Siwat Techavoranant -->
     <!-- github.com/keenthekeen/ChulaDirect -->
     <meta charset="UTF-8"/>
-    <title>คะแนนกสพท. 2558 - 2563</title>
-    <meta property="og:title" content="คะแนนกสพท. 2558 - 2563"/>
+    <title>คะแนนกสพท. 2558 - 2565</title>
+    <meta property="og:title" content="คะแนนกสพท. 2558 - 2565"/>
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="th_TH"/>
     <meta property="og:image" content="https://chuladirect.keendev.net/screen-cotmes.png"/>
 
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="คะแนนกสพท. 2558 - 2563"/>
+    <meta name="twitter:title" content="คะแนนกสพท. 2558 - 2565"/>
     <meta name="twitter:image" content="https://chuladirect.keendev.net/screen-cotmes.png"/>
 
     <meta name="google" content="notranslate"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#3f51b5"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g="
+          crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link href="app.css" rel="stylesheet"/>
     <style>
@@ -52,7 +53,7 @@
     <a href="index.html" class="white-text" style="margin-top:2rem"><i class="small material-icons">arrow_back</i> กลับ</a>
     <div class="white-text center-align" style="padding-bottom:4vh;line-height:1.5rem;">
         <h4>เปรียบเทียบคะแนนรับตรงกสพท.</h4>
-        <h6>คะแนนต่ำสุด คณะแพทย์/ทันตแพทย์ ปี 2558 - 2563</h6>
+        <h6>คะแนนต่ำสุด คณะแพทย์/ทันตแพทย์ ปี 2558 - 2565</h6>
         <div class="center-align minibox sector red darken-1 white-text" id="mini-al" style="display:none;font-size:1.3rem;line-height: 2rem;">
             <h4>ระบบไม่สามารถทำงานได้</h4>
             คุณกำลังใช้งานบนอุปกรณ์ที่ไม่เหมาะสม
@@ -80,7 +81,8 @@
             <br/>
             <div id="chart_cotmes" style="width: 100%; height: 500px;">(กด แสดงผล)</div>
             <table id="compareTable"></table>
-            <p class="grey-text" style="font-size:0.85rem">หมายเหตุ:&ensp;มีข้อมูลเฉพาะคณะแพทยศาสตร์และคณะทันตแพทยศาสตร์บางสถาบันเท่านั้น โปรดศึกษารายละเอียดจาก<a href="http://www9.si.mahidol.ac.th/" target="_blank">กสพท</a></p>
+            <p class="grey-text" style="font-size:0.85rem">หมายเหตุ:&ensp;มีข้อมูลเฉพาะคณะแพทยศาสตร์และคณะทันตแพทยศาสตร์บางสถาบันเท่านั้น โปรดศึกษารายละเอียดจาก<a href="http://www9.si.mahidol.ac.th/"
+                                                                                                                                                                   target="_blank">กสพท</a></p>
         </div>
     </div>
 </main>
@@ -98,8 +100,8 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {packages: ['corechart']});
-    var timeLoaded = (new Date()).getTime();
-    var list;
+    const timeLoaded = (new Date()).getTime();
+    let list;
     $(function () {
         fetch('medicine.json').then(function (response) {
             return response.json();
@@ -142,114 +144,98 @@
     }
 
     function showGraph() {
-        if (!$("#iCotmes").val()) {
+        const scoreRaw = $("#iCotmes").val();
+        if (!scoreRaw) {
             $("#chart_cotmes").html("<h5>โปรดระบุคะแนนรวม</h5>");
             return;
-        } else if (parseFloat($("#iCotmes").val()) < 55) {
-            $("#chart_cotmes").html("<h5>ขออภัย ไม่สามารถแสดงผลสำหรับคะแนนที่ต่ำกว่า 55</h5>");
+        }
+        const score = parseFloat(scoreRaw);
+        if (score < 54) {
+            $("#chart_cotmes").html("<h5>ขออภัย ไม่สามารถแสดงผลสำหรับคะแนนที่ต่ำกว่า 54</h5>");
             return;
         }
 
-        var score = parseFloat($("#iCotmes").val());
-        localStorage.setItem("cotmes-all", $("#iCotmes").val());
+        localStorage.setItem("cotmes-all", scoreRaw);
 
-        var facultyList = [];
+        let facultyList = [];
+        const yearData = {};
+        const facultyOrder = [];
         list.forEach(function (faculty) {
-            var diff = score - faculty['2562'];
+            const diff = score - faculty['2562'];
             if (diff < 7 && diff > -7) {
                 facultyList.push(faculty);
+                if (Object.keys(yearData).length === 0) {
+                    Object.keys(faculty).filter(key => key.startsWith('25')).forEach(year => yearData[year] = []);
+                }
             }
         });
-        var dataArray = [
-            ['คณะ/ปี'],
-            ['2558'],
-            ['2559'],
-            ['2560'],
-            ['2561'],
-            ['2562'],
-            ['2563'],
-            ['2564']
-        ];
-        facultyList.forEach(function (faculty) {
-            dataArray[0].push(faculty['University']);
-            dataArray[1].push(faculty['2558']);
-            dataArray[2].push(faculty['2559']);
-            dataArray[3].push(faculty['2560']);
-            dataArray[4].push(faculty['2561']);
-            dataArray[5].push(faculty['2562']);
-            dataArray[6].push(faculty['2563']);
-            dataArray[7].push(faculty['2564']);
+        facultyList.forEach(faculty => {
+            Object.keys(faculty).forEach(key => {
+                if (key.startsWith('25')) {
+                    yearData[key].push(faculty[key]);
+                } else if (key === 'University') {
+                    facultyOrder.push(faculty['University']);
+                }
+            });
         });
 
-        dataArray[0].push('ที่ได้');
-        dataArray[1].push(score);
-        dataArray[2].push(score);
-        dataArray[3].push(score);
-        dataArray[4].push(score);
-        dataArray[5].push(score);
-        dataArray[6].push(score);
-        dataArray[7].push(score);
+        facultyOrder.push('ที่ได้');
+        const dataArray = [
+            ['คณะ/ปี', ...facultyOrder],
+        ];
+        Object.keys(yearData).forEach(year => dataArray.push([year, ...yearData[year], score]));
+        const data = google.visualization.arrayToDataTable(dataArray);
 
-        var data = google.visualization.arrayToDataTable(dataArray);
-
-        var colorArray = [];
-        var colorAvailable = ['#ff8282', '#ffbc82', '#eaaa62', '#e6ff82', '#baff82', '#8aff82', '#82ffc2', '#82ddff', '#829bff'];
-        var colorNo = 0;
+        const colorArray = [];
+        const colorAvailable = ['#ff8282', '#ffbc82', '#eaaa62', '#e6ff82', '#baff82', '#8aff82', '#82ffc2', '#82ddff', '#829bff'];
+        let colorNo = 0;
         while (colorNo < facultyList.length) {
             colorArray.push(colorAvailable[colorNo % colorAvailable.length]);
             colorNo++;
         }
         colorArray.push('black');
 
-        var options = {
+        const options = {
             vAxis: {title: 'คะแนน'},
             isStacked: false,
             colors: colorArray
         };
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_cotmes'));
+        const chart = new google.visualization.AreaChart(document.getElementById('chart_cotmes'));
         chart.draw(data, options);
 
         gtag('event', 'show-cotmes', {
             'value': score
         });
 
-        var tableArray = [];
-        dataArray[0].forEach(function () {
-            tableArray.push([]);
-        });
-        var col = 0;
+        const tableArray = [];
+        dataArray[0].forEach(() => tableArray.push([]));
+        let col = 0;
         dataArray.forEach(function (elem) {
-            var row = 0;
+            let row = 0;
             elem.forEach(function (ele) {
                 tableArray[row][col] = ele;
                 row++;
             });
             col++;
         });
-        var tableCode = '';
-        var eNo = 0;
-        tableArray.forEach(function (elem) {
-            if (eNo === 0) {
-                tableCode += '<tr><th>' + elem[0] + '</th><th>' + elem[1] + '</th><th>' + elem[2] + '</th><th>' + elem[3] + '</th><th>' + elem[4] + '</th><th>' + elem[5] + '</th><th>' + elem[6] + '</th><th>' + elem[7] + '</th></tr>'; // Year specific
-            } else if (eNo <= facultyList.length) {
-                tableCode += '<tr><th>' + elem[0] + '</th>';
-                var loopNo = 1;
-                while (loopNo <= 7) { // Year specific
-                    tableCode += '<td>' + elem[loopNo];
-
-                    var diff = (score - elem[loopNo]).toFixed(2);
-                    if (diff >= 0) {
-                        tableCode += " (<span class='green-text'>+" + diff + "</span>)";
+        let tableCode = '';
+        tableArray.forEach((inRow, rowNo) => {
+            if (rowNo === 0) {
+                tableCode += '<tead><tr>';
+                inRow.forEach(v => tableCode += '<th>' + v + '</th>');
+                tableCode += '</tr></thead>';
+            } else if (rowNo <= facultyList.length) {
+                tableCode += '<tr>';
+                inRow.forEach((v, i) => {
+                    if (i === 0) {
+                        tableCode += '<th>' + v + '</th>';
                     } else {
-                        tableCode += " (<span class='red-text'>" + diff + "</span>)";
+                        const diff = (score - v).toFixed(2);
+                        tableCode += '<td>' + v + ((diff >= 0) ? " (<span class='green-text'>" : " (<span class='red-text'>") + diff + "</span>)</td>";
                     }
-
-                    tableCode += '</td>';
-                    loopNo++;
-                }
+                });
                 tableCode += '</tr>';
             }
-            eNo++;
         });
         $("#compareTable").html(tableCode);
     }
